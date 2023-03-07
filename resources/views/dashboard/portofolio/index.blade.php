@@ -20,7 +20,7 @@
                         @if ($info == null)
                             <p>Belum ada welcome message</p>
                         @else
-                            <p>{{ $info->welcome_message }}</p>
+                            {!! $info->welcome_message !!}
                         @endif
                     </div>
                     <h6 class="mb-4 mt-2">Github Link</h6>

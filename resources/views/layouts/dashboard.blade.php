@@ -8,6 +8,10 @@
     <meta content="" name="keywords" />
     <meta content="" name="description" />
 
+    {{-- CKEDITOR --}}
+    <script src="https://cdn.ckeditor.com/4.20.2/standard/ckeditor.js"></script>
+
+
     <!-- Favicon -->
     <link href="img/favicon.ico" rel="icon" />
 
@@ -68,6 +72,8 @@
 
     <!-- Template Javascript -->
     <script src="{{ asset('admin/js/main.js') }}"></script>
+    {{-- CKEDITOR --}}
+    @stack('addon-script')
 </body>
 
 </html>

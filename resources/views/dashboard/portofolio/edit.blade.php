@@ -20,9 +20,8 @@
                         @method('patch')
                         <h6 class="mb-4">Welcome Message</h6>
                         <div class="form-floating">
-                            <textarea class="form-control" value="{{ $info->welcome_message }}" placeholder="Leave a comment here"
-                                name="welcome_message" id="floatingTextarea" style="height: 150px"></textarea>
-                            <label for="floatingTextarea">{{ $info->welcome_message }}
+                            <textarea name="welcome_message">{{ $info->welcome_message }}</textarea>
+                            <label for="floatingTextarea">
                             </label>
                         </div>
                         <h6 class="mb-4 mt-2">Github Link</h6>
@@ -43,3 +42,9 @@
     </div>
     <!-- Form End -->
 @endsection
+
+@push('addon-script')
+    <script>
+        CKEDITOR.replace('welcome_message');
+    </script>
+@endpush
