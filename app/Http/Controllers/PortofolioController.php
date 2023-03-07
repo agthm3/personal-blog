@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Portofolio;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class PortofolioController extends Controller
 {
@@ -12,6 +13,55 @@ class PortofolioController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function add_info_portofolio()
+    {
+        return view('dashboard.portofolio.create');
+    }
+    public function index_portofolio()
+    {   
+        //Logic untuk mengaktifkan warna di navbar
+        session(['active_button' => 'portofolio']);
+
+        $info = Portofolio::find(1);
+        return view('dashboard.portofolio.index', compact('info'));
+    }
+    public function store_info_portofolio(Request $request)
+    {
+        $request->validate([
+            'welcome_message' => 'required',
+            'github_link'=> 'required'
+        ]);
+
+        Portofolio::create([
+            'welcome_message' => $request->welcome_message,
+            'github_link' => $request->github_link
+        ]);
+
+        return Redirect::route('index_dashboard_portofolio');
+    }
+
+    public function edit_info_portofolio()
+    {
+        $info = Portofolio::find(1);
+        return view('dashboard.portofolio.edit', compact('info'));
+    }
+    public function update_info_portofolio(Request $request, Portofolio $portofolio)
+    {
+        $request->validate([
+            'welcome_message'=> 'required',
+            'github_link' => 'required'
+        ]);
+
+        $info = Portofolio::find(1);
+
+        $portofolio->update([
+            'welcome_message' => $request->welcome_message, 
+            'github_link' => $request->github_link
+        ]);
+
+        return Redirect::route('index_dashboard_portofolio', compact('info'));
+    }
+
     public function index()
     {
         return view('pages.portofolio.index');

@@ -3,21 +3,45 @@
 @section('content')
     <!-- Form Start -->
     <div class="container-fluid pt-4 px-4">
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <div class="row g-4">
             <div class="col-sm-12 col-xl-12">
                 <div class="bg-light rounded h-100 p-4">
                     <h6 class="mb-4">Welcome Message</h6>
                     <div class="form-floating">
-                        <p>Belum ada welcome message</p>
+                        @if ($info == null)
+                            <p>Belum ada welcome message</p>
+                        @else
+                            <p>{{ $info->welcome_message }}</p>
+                        @endif
                     </div>
                     <h6 class="mb-4 mt-2">Github Link</h6>
                     <div class="form-floating">
-                        <p>Belum ada Github Link</p>
+                        @if ($info == null)
+                            <p>Belum ada Github link</p>
+                        @else
+                            <p>{{ $info->github_link }}</p>
+                        @endif
                     </div>
-                    <a href="add_portofolio.html">
-                        <button type="submit" class="btn btn-primary mt-2">
-                            Tambah
-                        </button></a>
+                    @if ($info == null)
+                        <a href="{{ route('add_info_portofolio') }}">
+                            <button type="submit" class="btn btn-primary mt-2">
+                                Tambah
+                            </button></a>
+                    @else
+                        <a href="{{ route('edit_info_portofolio') }}">
+                            <button type="submit" class="btn btn-primary mt-2">
+                                Edit
+                            </button></a>
+                    @endif
                 </div>
             </div>
         </div>

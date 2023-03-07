@@ -48,7 +48,11 @@ Route::post('/home/store', [HomeController::class, 'store_home'])->name('store_d
 Route::get('/dashboard/contact', [HomeController::class, 'index_contact'])->name('index_dashboard_contact');
 
 
-Route::get('/dashboard/portofolio', [HomeController::class, 'index_portofolio'])->name('index_dashboard_portofolio');
+Route::get('/dashboard/portofolio', [PortofolioController::class, 'index_portofolio'])->name('index_dashboard_portofolio');
+Route::get('/dashboard/portofolio/info', [PortofolioController::class, 'add_info_portofolio'])->name('add_info_portofolio');
+Route::post('/dashboard/portofolio/info', [PortofolioController::class, 'store_info_portofolio'])->name('store_info_portofolio');
+Route::get('/dashboard/portofolio/info/edit', [PortofolioController::class, 'edit_info_portofolio'])->name('edit_info_portofolio');
+Route::patch('/dashboard/portofolio/info/update/{portofolio}', [PortofolioController::class, 'update_info_portofolio'])->name('update_info_portofolio');
 
 Route::get('/dashboard/about', [HomeController::class, 'index_about'])->name('index_dashboard_about');
 Route::get('/dashboard/article', [HomeController::class, 'index_article'])->name('index_dashboard_article');

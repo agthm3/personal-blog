@@ -35,11 +35,7 @@ class HomeController extends Controller
        
         return view('dashboard.home.index', compact('messages'));
     }
-    public function index_portofolio()
-    {       //Logic untuk mengaktifkan warna di navbar
-          session(['active_button' => 'portofolio']);
-        return view('dashboard.portofolio.index');
-    }
+
     public function index_contact()
     {       //Logic untuk mengaktifkan warna di navbar
           session(['active_button' => 'contact']);
