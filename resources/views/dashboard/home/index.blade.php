@@ -8,20 +8,44 @@
                 <div class="bg-light rounded h-100 p-4">
                     <h6 class="mb-4">Welcome Message</h6>
                     <div class="form-floating">
-                        <p>Belum ada welcome message</p>
+
+
+                        @if ($messages == null)
+                            <p>Belum ada welcome message</p>
+                        @else
+                            <p>{{ $messages->welcome_message }}</p>
+                        @endif
+
                     </div>
                     <h6 class="mb-4 mt-2">Left Message</h6>
                     <div class="form-floating">
-                        <p>Belum ada Left message</p>
+
+                        @if ($messages == null)
+                            <p>Belum ada left message</p>
+                        @else
+                            <p>{{ $messages->left_message }}</p>
+                        @endif
                     </div>
                     <h6 class="mb-4 mt-2">Right Message</h6>
                     <div class="form-floating">
-                        <p>Belum ada Right Message</p>
+
+                        @if ($messages == null)
+                            <p>Belum ada right message</p>
+                        @else
+                            <p>{{ $messages->right_message }}</p>
+                        @endif
                     </div>
-                    <a href="create_home.html">
-                        <button type="submit" class="btn btn-primary mt-2">
-                            Tambah
+                    <a href="{{ route('create_dashboard_home') }}">
+                        @if ($messages == null)
+                            <button type="submit" class="btn btn-primary mt-2">
+                                Tambah
+                            </button>
+                    </a>
+                @else
+                    <a href="{{ route('edit_dashboard_home') }}"> <button type="submit" class="btn btn-primary mt-2">
+                            Edit
                         </button></a>
+                    @endif
                 </div>
             </div>
         </div>

@@ -37,7 +37,13 @@ class ProfileController extends Controller
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
 
-    /**
+    public function sidebar_profile(){
+        $user = Auth::user();
+
+        return view('includes.dashboard.sidebar', compact('user'));
+    }
+
+    /*
      * Delete the user's account.
      */
     public function destroy(Request $request): RedirectResponse

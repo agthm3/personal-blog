@@ -14,7 +14,8 @@
                         </div>
                     </div>
                     <div class="ms-3">
-                        <h6 class="mb-0">Jhon Doe</h6>
+
+                        <h6 class="mb-0">{{ Auth::user()->name }}</h6>
                         <span>Admin</span>
                     </div>
                 </div>
@@ -38,7 +39,9 @@
                     <a href="{{ route('index_dashboard_article') }}"
                         class="nav-item nav-link {{ session('active_button') == 'article' ? 'active' : '' }}"><i
                             class="fa fa-table me-2"></i>Blog</a>
-                    <a href="index_comment.html" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Komentar</a>
+                    <a href="{{ route('index_dashboard_comment') }}"
+                        class="nav-item nav-link {{ session('active_button') == 'comment' ? 'active' : '' }}"><i
+                            class="fa fa-table me-2"></i>Komentar</a>
                 </div>
             </nav>
         </div>

@@ -41,6 +41,10 @@ Route::get('/contact', [ContactController::class, 'index'])->name('index_contact
 Route::get('/dashboard', [HomeController::class, 'index_dashboard'])->name('index_dashboard');
 
 Route::get('/dashboard/home', [HomeController::class, 'index_home'])->name('index_dashboard_home');
+Route::get('/dashboard/home/edit', [HomeController::class, 'edit_home'])->name('edit_dashboard_home');
+Route::patch('/dashboard/home/{home}', [HomeController::class, 'update_home'])->name('update_dashboard_home');
+Route::get('/home/create', [HomeController::class, 'create_home'])->name('create_dashboard_home');
+Route::post('/home/store', [HomeController::class, 'store_home'])->name('store_dashboard_home');
 Route::get('/dashboard/contact', [HomeController::class, 'index_contact'])->name('index_dashboard_contact');
 
 
@@ -48,6 +52,7 @@ Route::get('/dashboard/portofolio', [HomeController::class, 'index_portofolio'])
 
 Route::get('/dashboard/about', [HomeController::class, 'index_about'])->name('index_dashboard_about');
 Route::get('/dashboard/article', [HomeController::class, 'index_article'])->name('index_dashboard_article');
+Route::get('/dashboard/comment', [HomeController::class, 'index_comment'])->name('index_dashboard_comment');
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');

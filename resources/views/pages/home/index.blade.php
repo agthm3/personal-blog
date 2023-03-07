@@ -2,12 +2,14 @@
 
 @section('content')
     <article>
+
         <div class="content-1330 center-relative">
             <div class="page-desc">
-                Science cuts two ways, of course, its products can
-                be used for both good and evil. But there’s no
-                turning back from science. The early warnings about
-                technological dangers also come from science.
+                @if ($messages == null)
+                    <p>Belum ada Welcome Message</p>
+                @else
+                    <p> {{ $messages->welcome_message }}</p>
+                @endif
             </div>
             <div class="clear"></div>
             <p>&nbsp;</p>
@@ -90,29 +92,21 @@
                 <p>
                     <strong>The Story</strong>
                     <br />
-                    With a warning label this big, you know they
-                    gotta be fun. Bring me the forms I need to fill
-                    out to have her taken away. I decline the title
-                    of iron cook and accept the lesser title of zinc
-                    saucier, which I just made up.
-                </p>
-                <p>&nbsp;</p>
-                <p>
-                    Curabitur felis mi, sodales id ligula ac,
-                    pulvinar condimentum nulla. Integer dignissim
-                    bibendum augue, id dapibus nisl maximus non.
-                    Pellentesque rhoncus vitae odio ut euismod.
+                    @if ($messages == null)
+                        <p>Belum ada Left Message</p>
+                    @else
+                        <p> {{ $messages->left_message }}</p>
+                    @endif
                 </p>
             </div>
             <div class="one_half last">
                 <p>
                     <strong>Dreamers</strong>
-                    <br />
-                    You probably haven’t heard of them before they
-                    sold out scenester literally readymade. Trust
-                    fund Thundercats flexitarian, aesthetic Tumblr
-                    banjo freegan semiotics biodiesel master cleanse
-                    taxidermy blog.
+                    @if ($messages == null)
+                        <p>Belum ada Right Message</p>
+                    @else
+                        <p> {{ $messages->right_message }}</p>
+                    @endif
                 </p>
                 <p>&nbsp;</p>
                 <div class="text-left">

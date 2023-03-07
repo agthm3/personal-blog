@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Home;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class HomeController extends Controller
 {
@@ -12,8 +14,10 @@ class HomeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        return view('pages.home.index');
+    {   
+       $messages = Home::find(1);
+
+        return view('pages.home.index', compact('messages'));
     }
 
     public function index_dashboard()
@@ -23,10 +27,13 @@ class HomeController extends Controller
     }
 
     public function index_home()
-    {   
+    {    
         //Logic untuk mengaktifkan warna di navbar
         session(['active_button' => 'home']);
-        return view('dashboard.home.index');
+        $messages = Home::find(1);
+
+       
+        return view('dashboard.home.index', compact('messages'));
     }
     public function index_portofolio()
     {       //Logic untuk mengaktifkan warna di navbar
@@ -48,14 +55,19 @@ class HomeController extends Controller
           session(['active_button' => 'article']);
         return view('dashboard.article.index');
     }
+    public function index_comment()
+    {       //Logic untuk mengaktifkan warna di navbar
+          session(['active_button' => 'comment']);
+        return view('dashboard.comment.index');
+    }
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create_home()
     {
-        //
+        return view('dashboard.home.create');
     }
 
     /**
@@ -64,9 +76,23 @@ class HomeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store_home(Request $request)
     {
-        //
+        $request->validate([
+            'welcome_message' => 'required',
+            'left_message' => 'required', 
+            'right_message' => 'required', 
+        ]);
+
+       
+        Home::create([
+            'welcome_message' => $request->welcome_message, 
+            'left_message' => $request->left_message, 
+            'right_message' => $request->right_message
+        ]);
+
+        return Redirect::route('index_dashboard_home');
+
     }
 
     /**
@@ -80,15 +106,32 @@ class HomeController extends Controller
         //
     }
 
-    /**
+    /**dd
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit_home(Home $home)
     {
-        //
+        $homes = Home::find(1);
+        return view('dashboard.home.edit', compact('homes'));
+    }
+    public function update_home(Request $request, Home $home)
+    {
+        $request->validate([
+            'welcome_message' => 'required',
+            'left_message' => 'required',
+            'right_message' => 'required'
+        ]);
+
+        $home->update([
+            'welcome_message' => $request->welcome_message, 
+            'left_message' => $request->left_message, 
+            'right_message' => $request->right_message
+        ]);
+
+        return Redirect::route('index_dashboard_home');
     }
 
     /**
