@@ -36,7 +36,11 @@ Route::get('/portofolio', [PortofolioController::class, 'index'])->name('index_p
 Route::get('/article', [ArticleController::class, 'index'])->name('index_article');
 //contact
 Route::get('/contact', [ContactController::class, 'index'])->name('index_contact');
-
+Route::get('/dashboard/contact', [ContactController::class, 'index_contact'])->name('index_dashboard_contact');
+Route::get('/contact/add', [ContactController::class, 'create_dashboard_contact'])->name('create_dashboard_contact');
+Route::post('/contact/create', [ContactController::class, 'store_dashboard_contact'])->name('store_dashboard_contact');
+Route::get('/contact/edit', [ContactController::class, 'edit_dashboard_contact'])->name('edit_dashboard_contact');
+Route::patch('/contact/edit/{contact}', [ContactController::class, 'update_dashboard_contact'])->name('update_dashboard_contact');
 
 Route::get('/dashboard', [HomeController::class, 'index_dashboard'])->name('index_dashboard');
 
@@ -45,7 +49,7 @@ Route::get('/dashboard/home/edit', [HomeController::class, 'edit_home'])->name('
 Route::patch('/dashboard/home/{home}', [HomeController::class, 'update_home'])->name('update_dashboard_home');
 Route::get('/home/create', [HomeController::class, 'create_home'])->name('create_dashboard_home');
 Route::post('/home/store', [HomeController::class, 'store_home'])->name('store_dashboard_home');
-Route::get('/dashboard/contact', [HomeController::class, 'index_contact'])->name('index_dashboard_contact');
+
 
 
 Route::get('/dashboard/portofolio', [PortofolioController::class, 'index_portofolio'])->name('index_dashboard_portofolio');

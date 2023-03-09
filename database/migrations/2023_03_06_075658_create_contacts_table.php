@@ -15,6 +15,10 @@ return new class extends Migration
     {
         Schema::create('contacts', function (Blueprint $table) {
             $table->id();
+            $table->longText('welcome_message');
+            $table->string('github_link');
+            $table->string('whatsapp_link');
+            $table->string('linkedin_link');
             $table->timestamps();
         });
     }

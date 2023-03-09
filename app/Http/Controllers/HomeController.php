@@ -36,11 +36,7 @@ class HomeController extends Controller
         return view('dashboard.home.index', compact('messages'));
     }
 
-    public function index_contact()
-    {       //Logic untuk mengaktifkan warna di navbar
-          session(['active_button' => 'contact']);
-        return view('dashboard.contact.index');
-    }
+
     public function index_about()
     {       //Logic untuk mengaktifkan warna di navbar
           session(['active_button' => 'about']);

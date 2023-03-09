@@ -8,34 +8,48 @@
                 <div class="bg-light rounded h-100 p-4">
                     <h6 class="mb-4">Welcome Message</h6>
                     <div class="form-floating">
-                        <p>
-                            Diam sea sanctus amet clita lorem sit
-                            sanctus ea elitr. Lorem rebum est elitr
-                            eos. Dolores aliquyam sadipscing dolor
-                            sadipscing accusam voluptua tempor.
-                            Sanctus elitr sanctus diam tempor diam
-                            aliquyam et labore clita, ipsum takimata
-                            amet est erat, accusam takimata
-                            gubergren sea sanctus duo nonumy. Ipsum
-                            diam ipsum sit kasd.
-                        </p>
+                        @if ($contact == null)
+                            <p>Belum ada Welcome message</p>
+                        @else
+                            {{ $contact->welcome_message }}
+                        @endif
                     </div>
                     <h6 class="mb-4 mt-2">Github Link</h6>
                     <div class="form-floating">
-                        <p>https://github.com/agthm3</p>
+                        @if ($contact == null)
+                            <p>Belum ada link</p>
+                        @else
+                            {{ $contact->github_link }}
+                        @endif
                     </div>
                     <h6 class="mb-4 mt-2">WhatsApp Link</h6>
                     <div class="form-floating">
-                        <p>https://github.com/agthm3</p>
+                        @if ($contact == null)
+                            <p>Belum ada link</p>
+                        @else
+                            {{ $contact->linkedin_link }}
+                        @endif
                     </div>
                     <h6 class="mb-4 mt-2">LinkedIn Link</h6>
                     <div class="form-floating">
-                        <p>https://github.com/agthm3</p>
+                        @if ($contact == null)
+                            <p>Belum ada link</p>
+                        @else
+                            {{ $contact->linkedin_link }}
+                        @endif
                     </div>
-                    <a href="create_kontak.html">
-                        <button type="submit" class="btn btn-primary mt-2">
-                            Tambah
-                        </button></a>
+                    @if ($contact == null)
+                        <a href="{{ route('create_dashboard_contact') }}">
+                            <button type="submit" class="btn btn-primary mt-2">
+                                Tambah
+                            </button></a>
+                    @else
+                        <form action="{{ route('edit_dashboard_contact') }}" method="get">
+                            <button type="submit" class="btn btn-primary mt-2">
+                                Edit
+                            </button>
+                        </form>
+                    @endif
                 </div>
             </div>
         </div>

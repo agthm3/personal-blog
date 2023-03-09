@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Contact extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'welcome_message',
+        'github_link',
+        'whatsapp_link',
+        'linkedin_link'
+    ];
 }

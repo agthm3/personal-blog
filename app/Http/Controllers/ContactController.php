@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Contact;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class ContactController extends Controller
 {
@@ -15,6 +16,63 @@ class ContactController extends Controller
     public function index()
     {
         return view('pages.contact.index');
+    }
+    public function index_contact()
+    {       //Logic untuk mengaktifkan warna di navbar
+          session(['active_button' => 'contact']);
+
+        $contact = Contact::find(1);
+        return view('dashboard.contact.index', compact('contact'));
+    }
+
+    public function create_dashboard_contact()
+    {
+        return view('dashboard.contact.create');
+    }
+
+    public function store_dashboard_contact(Request $request)
+    {
+        $request->validate([
+            'welcome_message' => 'required', 
+            'github_link' => 'required',
+            'whatsapp_link'=> 'required',
+            'linkedin_link'=> 'required'
+        ]);
+
+        Contact::create([
+            'welcome_message' => $request->welcome_message, 
+            'github_link' => $request->github_link, 
+            'whatsapp_link' => $request->whatsapp_link, 
+            'linkedin_link' => $request->linkedin_link
+        ]);
+
+        return Redirect::route('index_dashboard_contact');
+    }
+
+    public function edit_dashboard_contact()
+    {
+        $contact = Contact::find(1);
+        return view('dashboard.contact.edit', compact('contact'));
+    }
+
+    public function update_dashboard_contact(Request $request, Contact $contact)
+    {
+        $request->validate([
+            'welcome_message' => 'required',
+            'github_link' => 'required',
+            'whatsapp_link' => 'required',
+            'linkedin_link' => 'required'
+        ]);
+
+        $contact->update([
+            'welcome_message' => $request->welcome_message, 
+            'github_link' => $request->github_link, 
+            'whatsapp_link' => $request->whatsapp_link,
+            'linkedin_link' => $request->linkedin_link
+        ]);
+
+        return Redirect::route('index_dashboard_contact');
+        
     }
 
     /**
