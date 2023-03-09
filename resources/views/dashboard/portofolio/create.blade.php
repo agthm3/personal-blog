@@ -1,4 +1,4 @@
-@extends('layouts.dashboard')
+@extends('layouts.dashboard');
 
 @section('content')
     <!-- Form Start -->
@@ -14,23 +14,35 @@
         @endif
         <div class="row g-4">
             <div class="col-sm-12 col-xl-12">
+                <h1>Create New Portofolio</h1>
                 <div class="bg-light rounded h-100 p-4">
-                    <form action="{{ route('store_info_portofolio') }}" method="post">
+                    <form action="{{ route('store_portofolio') }}" method="post" enctype="multipart/form-data">
                         @csrf
-                        <h6 class="mb-4">Welcome Message</h6>
-                        <div class="form-floating">
-                            <textarea class="form-control" name="welcome_message" placeholder="Leave a comment here" id="floatingTextarea"
-                                style="height: 150px"></textarea>
-                            <label for="floatingTextarea">Welcome Message
-                            </label>
+                        <h6 class="mb-4">Gambar</h6>
+                        <div class="mb-3">
+                            <label for="formFile" class="form-label">Default file input example</label>
+                            <input class="form-control" name="image" type="file" id="formFile" />
                         </div>
-                        <h6 class="mb-4 mt-2">Github Link</h6>
+                        <h6 class="m2-4 mt-2">Project Name</h6>
                         <div class="form-floating">
-                            <input type="text" class="form-control" name="github_link" id="input-github" />
+                            <input type="text" class="form-control" id="input-github" name="project_name" />
                             <label for="input-github">
-                                Masukkan link Github</label>
+                                Masukkan nama project</label>
+                            <h6 class="mb-2 mt-2">Client Name</h6>
+                            <input type="text" class="form-control mt-2" id="input-github" name="client_name" />
+                            <h6 class="mb-2 mt-2">Tahun</h6>
+                            <input type="number" class="form-control mt-2" id="input-github" name="year" />
+                            <h6 class="mb-2 mt-2">Live Preview</h6>
+                            <input type="text" class="form-control mt-2" id="input-github" name="live_preview" />
+                            <h6 class="mb-2 mt-2">Github Link</h6>
+                            <input type="text" class="form-control mt-2" id="input-github" name="github_link" />
+                            <h6 class="mb-2 mt-2">Title</h6>
+                            <input type="text" class="form-control mt-2" id="input-github" name="title" />
+                            <h6 class="mb-2 mt-2">Deskripsi</h6>
+                            <textarea name="description" id="" cols="30" rows="20" class="form-control"></textarea>
+                            <h6 class="mb-2 mt-2">Harga</h6>
+                            <input type="number" class="form-control mt-2" id="input-github" name="price" />
                         </div>
-
                         <button type="submit" class="btn btn-primary mt-2">
                             Simpan
                         </button>

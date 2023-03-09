@@ -49,7 +49,7 @@
         <div class="bg-light text-center rounded p-4 mt-2">
             <div class="d-flex align-items-center justify-content-between mb-4">
                 <h6 class="mb-0">Portofolio</h6>
-                <a href="portofolio-create.html">Create</a>
+                <a href="{{ route('create_portofolio') }}">Create</a>
             </div>
             <div class="table-responsive">
                 <table class="table text-start align-middle table-bordered table-hover mb-0">
@@ -66,32 +66,26 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>
-                                <input class="form-check-input" type="checkbox" />
-                            </td>
-                            <td>01 Jan 2045</td>
-                            <td>INV-0123</td>
-                            <td>Jhon Doe</td>
-                            <td>$123</td>
-                            <td>
-                                <a class="btn btn-sm btn-primary" href="">Hapus</a>
-                                <a class="btn btn-sm btn-primary" href="">Edit</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input class="form-check-input" type="checkbox" />
-                            </td>
-                            <td>01 Jan 2045</td>
-                            <td>INV-0123</td>
-                            <td>Jhon Doe</td>
-                            <td>$123</td>
-                            <td>
-                                <a class="btn btn-sm btn-primary" href="">Hapus</a>
-                                <a class="btn btn-sm btn-primary" href="">Edit</a>
-                            </td>
-                        </tr>
+                        @foreach ($portofolios as $portofolio)
+                            <tr>
+                                <td>
+                                    <input class="form-check-input" type="checkbox" />
+                                </td>
+                                <td>{{ $portofolio->created_at }}</td>
+                                <td>{{ $portofolio->project_name }}</td>
+                                <td>{{ $portofolio->client_name }}</td>
+                                <td>Rp{{ number_format($portofolio->price) }}</td>
+                                <td>
+                                    <form action="{{ route('delete_portofolio', $portofolio) }}" method="post">
+                                        @csrf
+                                        @method('delete')
+                                        <button type="submit" class="btn btn-sm btn-primary">Hapus</button>
+                                    </form>
+                                    <form action=""> <a class="btn btn-sm btn-primary mt-1" href="">Edit</a>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

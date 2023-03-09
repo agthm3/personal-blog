@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('portofolios', function (Blueprint $table) {
             $table->id();
-            $table->longText('welcome_message');
-            $table->string('github_link');
+            $table->longText('welcome_message')->nullable();
+            $table->string('github_link')->nullable();
             $table->string('image')->nullable();
             $table->string('project_name')->nullable();
             $table->string('client_name')->nullable();

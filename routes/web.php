@@ -53,6 +53,10 @@ Route::get('/dashboard/portofolio/info', [PortofolioController::class, 'add_info
 Route::post('/dashboard/portofolio/info', [PortofolioController::class, 'store_info_portofolio'])->name('store_info_portofolio');
 Route::get('/dashboard/portofolio/info/edit', [PortofolioController::class, 'edit_info_portofolio'])->name('edit_info_portofolio');
 Route::patch('/dashboard/portofolio/info/update/{portofolio}', [PortofolioController::class, 'update_info_portofolio'])->name('update_info_portofolio');
+Route::get('/dashboard/portofolio/create', [PortofolioController::class, 'create_portofolio'])->name('create_portofolio');
+Route::post('/dashboard/portofolio/create', [PortofolioController::class, 'store_portofolio'])->name('store_portofolio');
+Route::get('/dashboard/portofolio/show/{portofolio}', [PortofolioController::class, 'show_portofolio'])->name('show_portofolio');
+Route::delete('/dashboard/portofolio/{portofolio}/delete', [PortofolioController::class, 'delete_portofolio'])->name('delete_portofolio');
 
 Route::get('/dashboard/about', [HomeController::class, 'index_about'])->name('index_dashboard_about');
 Route::get('/dashboard/article', [HomeController::class, 'index_article'])->name('index_dashboard_article');
