@@ -5,12 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class About extends Model
+class Achievement extends Model
 {
     use HasFactory;
+
     protected $fillable = [
-        'welcome_message',
-        'image',
-        'article'
+        'year',
+        'achievement'
     ];
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 }

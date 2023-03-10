@@ -18,7 +18,7 @@
                     <div class="form-floating">
                         <p>Belum ada article</p>
                     </div>
-                    <a href="add_tentang.html">
+                    <a href="{{ route('add_info_about') }}">
                         <button type="submit" class="btn btn-primary mt-2">
                             Tambah
                         </button></a>

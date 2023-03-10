@@ -5,12 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class About extends Model
+class JobExperience extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'welcome_message',
-        'image',
-        'article'
+        'year',
+        'experienced'
     ];
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 }

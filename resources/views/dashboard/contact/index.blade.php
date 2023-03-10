@@ -27,7 +27,7 @@
                         @if ($contact == null)
                             <p>Belum ada link</p>
                         @else
-                            {{ $contact->linkedin_link }}
+                            {{ $contact->whatsapp_link }}
                         @endif
                     </div>
                     <h6 class="mb-4 mt-2">LinkedIn Link</h6>

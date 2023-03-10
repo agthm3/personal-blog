@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\About;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
 
 class AboutController extends Controller
 {
@@ -17,6 +19,32 @@ class AboutController extends Controller
         return view('pages.about.index');
     }
 
+    public function add_info_about()
+    {
+        return view('dashboard.about.add');
+    }
+    
+    public function store_info_about(Request $request)
+    {
+        $request->validate([
+            'welcome_message' => 'required',
+            'image' => 'required|image',
+            'article' => 'required'
+        ]);
+
+        $file = $request->file('image');
+        $path = time() . '_' . $file->getClientOriginalExtension();
+        Storage::disk('local')->put('public/'. $path, file_get_contents($file));
+
+
+        About::create([
+            'welcome_message' => $request->welcome_message, 
+            'image' => $path, 
+            'article' => $request->article
+        ]);
+
+        return Redirect::route('index_dashboard_about');
+    }
     /**
      * Show the form for creating a new resource.
      *
