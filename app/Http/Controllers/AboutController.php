@@ -18,6 +18,13 @@ class AboutController extends Controller
     {
         return view('pages.about.index');
     }
+    public function index_about()
+    {       //Logic untuk mengaktifkan warna di navbar
+          session(['active_button' => 'about']);
+
+        $about = About::find(1);
+        return view('dashboard.about.index', compact('about'));
+    }
 
     public function add_info_about()
     {
@@ -44,6 +51,34 @@ class AboutController extends Controller
         ]);
 
         return Redirect::route('index_dashboard_about');
+    }
+
+    public function edit_info_about()
+    {
+        $about = About::find(1);
+        return view('dashboard.about.edit', compact('about'));
+    }
+
+    public function update_info_about(Request $request, About $about)
+    {
+        $request->validate([
+            'welcome_message' => 'required',
+            'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg',
+            'article' => 'required'
+        ]);
+
+        $file = $request->file('image');
+        $path = time() . '_' . $file->getClientOriginalExtension();
+        Storage::disk('local')->put('public/'. $path, file_get_contents($file));
+
+
+        $about->update([
+            'welcome_message' => $request->welcome_message, 
+            'image' => $path, 
+            'article' => $request->article
+        ]);
+
+        return Redirect::route('index_dashboard_about', compact('about'));
     }
     /**
      * Show the form for creating a new resource.

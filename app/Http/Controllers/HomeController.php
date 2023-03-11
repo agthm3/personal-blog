@@ -37,11 +37,7 @@ class HomeController extends Controller
     }
 
 
-    public function index_about()
-    {       //Logic untuk mengaktifkan warna di navbar
-          session(['active_button' => 'about']);
-        return view('dashboard.about.index');
-    }
+
     public function index_article()
     {       //Logic untuk mengaktifkan warna di navbar
           session(['active_button' => 'article']);

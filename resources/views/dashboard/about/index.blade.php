@@ -3,25 +3,55 @@
 @section('content')
     <!-- Form Start -->
     <div class="container-fluid pt-4 px-4">
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <div class="row g-4">
             <div class="col-sm-12 col-xl-12">
                 <div class="bg-light rounded h-100 p-4">
                     <h6 class="mb-4">Welcome Message</h6>
                     <div class="form-floating">
-                        <p>Belum ada welcome message</p>
+                        @if ($about == null)
+                            <p>Belum ada Welcome message</p>
+                        @else
+                            {{ $about->welcome_message }}
+                        @endif
                     </div>
                     <h6 class="mb-4 mt-2">Foto Sampul</h6>
                     <div class="form-floating">
-                        <p>Belum ada foto sampul</p>
+                        @if ($about == null)
+                            <p>Belum ada foto sampul</p>
+                        @else
+                            <img src="{{ url('storage/' . $about->image) }}" height="100px" alt="">
+                        @endif
                     </div>
                     <h6 class="mb-4 mt-2">Article</h6>
                     <div class="form-floating">
-                        <p>Belum ada article</p>
+                        @if ($about == null)
+                            <p>Belum ada article</p>
+                        @else
+                            {!! $about->article !!}
+                        @endif
                     </div>
-                    <a href="{{ route('add_info_about') }}">
-                        <button type="submit" class="btn btn-primary mt-2">
-                            Tambah
-                        </button></a>
+                    @if ($about == null)
+                        <form action="{{ route('add_info_about') }}" method="get">
+                            <button type="submit" class="btn btn-primary mt-2">
+                                Tambah
+                            </button>
+                        </form>
+                    @else
+                        <form action="{{ route('edit_info_about', $about) }}" method="get">
+                            <button type="submit" class="btn btn-primary mt-2">
+                                Edit
+                            </button>
+                        </form>
+                    @endif
                 </div>
             </div>
         </div>
