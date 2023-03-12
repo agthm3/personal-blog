@@ -6,6 +6,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PortofolioController;
 use App\Http\Controllers\ProfileController;
+use App\Models\JobExperience;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -61,6 +62,9 @@ Route::get('/dashboard/portofolio/create', [PortofolioController::class, 'create
 Route::post('/dashboard/portofolio/create', [PortofolioController::class, 'store_portofolio'])->name('store_portofolio');
 Route::get('/dashboard/portofolio/show/{portofolio}', [PortofolioController::class, 'show_portofolio'])->name('show_portofolio');
 Route::delete('/dashboard/portofolio/{portofolio}/delete', [PortofolioController::class, 'delete_portofolio'])->name('delete_portofolio');
+Route::get('/dashboard/portofolio/detail/{portofolio}', [PortofolioController::class, 'detail_portofolio'])->name('detail_portofolio');
+Route::get('/dashboard/portofolio/{portofolio}/edit', [PortofolioController::class, 'edit_portofolio'])->name('edit_portofolio');
+Route::patch('/dashboard/portofolio/{portofolio}' , [PortofolioController::class, 'update_portofolio'])->name('update_portofolio');
 
 Route::get('/dashboard/about', [AboutController::class, 'index_about'])->name('index_dashboard_about');
 Route::get('/dashboard/add', [AboutController::class, 'add_info_about'])->name('add_info_about');
@@ -70,6 +74,11 @@ Route::patch('/dashboard/edit/{about}', [AboutController::class, 'update_info_ab
 
 Route::get('/dashboard/article', [HomeController::class, 'index_article'])->name('index_dashboard_article');
 Route::get('/dashboard/comment', [HomeController::class, 'index_comment'])->name('index_dashboard_comment');
+
+Route::get('/experience/create', [AboutController::class, 'create_experience'])->name('create_experience');
+Route::post('/experience/create', [AboutController::class, 'store_dashboard_experiece'])->name('store_dashboard_experiece');
+Route::delete('/experiece/{id}/delete', [AboutController::class, 'delete_dashboard_experience'])->name('delete_dashboard_experience');
+// Route::get('/experience/edit/{id}', [AboutController::class, 'edit_dashboard_experience'])->name('edit_dashboard_experience');
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');

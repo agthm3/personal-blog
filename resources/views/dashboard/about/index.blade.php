@@ -59,7 +59,7 @@
         <div class="bg-light text-center rounded p-4 mt-2">
             <div class="d-flex align-items-center justify-content-between mb-4">
                 <h6 class="mb-0">Pengalaman Kerja</h6>
-                <a href="create_job_experience.html">Create</a>
+                <a href="{{ route('create_experience') }}">Create</a>
             </div>
             <div class="table-responsive">
                 <table class="table text-start align-middle table-bordered table-hover mb-0">
@@ -75,30 +75,32 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>
-                                <input class="form-check-input" type="checkbox" />
-                            </td>
-                            <td>01 Jan 2045</td>
-                            <td>INV-0123</td>
-                            <td>Jhon Doe</td>
-                            <td>
-                                <a class="btn btn-sm btn-primary" href="">Hapus</a>
-                                <a class="btn btn-sm btn-primary" href="">Edit</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input class="form-check-input" type="checkbox" />
-                            </td>
-                            <td>01 Jan 2045</td>
-                            <td>INV-0123</td>
-                            <td>Jhon Doe</td>
-                            <td>
-                                <a class="btn btn-sm btn-primary" href="">Hapus</a>
-                                <a class="btn btn-sm btn-primary" href="">Edit</a>
-                            </td>
-                        </tr>
+                        @if ($jobexperiences == null)
+                            <p>Belum ada data</p>
+                        @else
+                            @foreach ($jobexperiences as $jobexperience)
+                                <tr>
+                                    <td>
+                                        <input class="form-check-input" type="checkbox" />
+                                    </td>
+                                    <td>{{ $jobexperience->created_at }}</td>
+                                    <td>{{ $jobexperience->year }}</td>
+                                    <td>{{ $jobexperience->experienced }}</td>
+                                    <td>
+                                        <form action="{{ route('delete_dashboard_experience', $jobexperience) }}"
+                                            method="post">
+                                            @csrf
+                                            @method('delete')
+                                            <button type="submit" class="btn btn-sm btn-primary">Hapus</button>
+                                        </form>
+                                        {{-- <form action="{{ route('edit_dashboard_experience') }}" method="post">
+                                            <button type="submit">Edit</button>
+                                        </form> --}}
+
+                                    </td>
+                                </tr>
+                            @endforeach
+                        @endif
                     </tbody>
                 </table>
             </div>

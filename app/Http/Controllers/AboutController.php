@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\About;
+use App\Models\JobExperience;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
 
@@ -18,12 +22,15 @@ class AboutController extends Controller
     {
         return view('pages.about.index');
     }
-    public function index_about()
+    public function index_about(    )
     {       //Logic untuk mengaktifkan warna di navbar
           session(['active_button' => 'about']);
 
+   
+        $user_id = Auth::user()->id;
+        $jobexperiences = JobExperience::where('user_id', $user_id)->get();
         $about = About::find(1);
-        return view('dashboard.about.index', compact('about'));
+        return view('dashboard.about.index', compact('about', 'jobexperiences'));
     }
 
     public function add_info_about()
@@ -85,6 +92,49 @@ class AboutController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+
+    public function create_experience()
+    {
+        return view('dashboard.experience.create');
+    }
+    public function store_dashboard_experiece(Request $request)
+    {
+        $request->validate([
+            'year' => 'required',
+            'experienced'=> 'required'
+        ]);
+        $user = Auth::user();
+
+        JobExperience::create([
+            'year' => $request->year,
+            'experienced' => $request->experienced,
+            'user_id' => $user->id
+        ]);
+
+        Return Redirect::route('index_dashboard_about');
+    }
+
+    public function delete_dashboard_experience( $id)
+    {
+        // $jobExperience->delete();
+
+        //  $jobExperience =  JobExperience::where('experienced', $jobExperience)->delete();
+            // menghapus data berdasarkan id
+
+        DB::table('job_experiences')->where('id', $id)->delete();
+
+
+        return Redirect::back();
+    }
+
+    public function edit_dashboard_experience($id)
+    {
+        $user_id = Auth::user()->id;
+        $jobexperience = JobExperience::where('id', $id)->get();
+         return view('dashboard.experience.edit', compact('jobexperience'));
+    }
+
     public function create()
     {
         //

@@ -10,7 +10,8 @@ class JobExperience extends Model
     use HasFactory;
     protected $fillable = [
         'year',
-        'experienced'
+        'experienced',
+        'user_id'
     ];
 
     public function user(){

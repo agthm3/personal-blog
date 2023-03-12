@@ -81,7 +81,9 @@
                                         @method('delete')
                                         <button type="submit" class="btn btn-sm btn-primary">Hapus</button>
                                     </form>
-                                    <form action=""> <a class="btn btn-sm btn-primary mt-1" href="">Edit</a>
+
+                                    <form action="{{ route('detail_portofolio', $portofolio) }}">
+                                        <button class="btn btn-sm btn-primary mt-1" type="submit">Detail</button>
                                     </form>
                                 </td>
                             </tr>

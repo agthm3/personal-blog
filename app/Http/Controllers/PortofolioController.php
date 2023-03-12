@@ -29,6 +29,51 @@ class PortofolioController extends Controller
         $portofolios = Portofolio::all();
         return view('dashboard.portofolio.index', compact('info', 'portofolios'));
     }
+
+    public function detail_portofolio(Portofolio $portofolio)
+    {
+        return view('dashboard.portofolio.show', compact('portofolio'));
+    }
+    public function edit_portofolio(Portofolio $portofolio)
+    {
+        return view('dashboard.portofolio.edit', compact('portofolio'));
+    }
+    public function update_portofolio(Request $request, Portofolio $portofolio)
+    {
+        $request->validate([
+            'project_name' => 'required',
+            'client_name' => 'required',
+            'year'=> 'required',
+            'live_preview'=> 'required',
+            'github_link' => 'required',
+            'title' => 'required',
+            'description' => 'required',
+            'price' => 'required',
+            'image' => 'image'
+        ]);
+
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $path = time() . '_' . $request->project_name . '.' . $file->getClientOriginalExtension();
+
+            Storage::disk('local')->put('public/'. $path, file_get_contents($file));
+        } else {
+             $path = $portofolio->image;
+        }
+        
+        $portofolio->update([
+            'project_name' => $request->project_name,
+            'client_name' => $request->client_name, 
+            'year' => $request->year,
+            'live_preview' => $request->live_preview, 
+            'github_link' => $request->github_link,
+            'title' => $request->title,
+            'description' => $request->description,
+            'price' => $request->price,
+            'image' => $path
+        ]);
+        return Redirect::route('index_dashboard_portofolio', compact('portofolio'));
+    }
     public function store_info_portofolio(Request $request)
     {
         $request->validate([
