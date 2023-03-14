@@ -8,10 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Portofolio extends Model
 {
     use HasFactory;
-
+    
     protected $fillable = [
-        'welcome_message', 
-        'image',
         'project_name',
         'client_name',
         'year',
@@ -19,6 +17,7 @@ class Portofolio extends Model
         'github_link',
         'title',
         'description',
-        'price'
+        'price',
+        'image'
     ];
 }

@@ -7,7 +7,7 @@
             <div class="col-sm-12 col-xl-12">
                 <h1>Detail Portofolio</h1>
                 <div class="bg-light rounded h-100 p-4">
-                    <form action="{{ route('edit_portofolio', $portofolio) }}" method="get">
+                    <form action="{{ route('edit_dashboard_portofolio', $portofolio) }}" method="get">
                         <h6 class="mb-4">Gambar</h6>
                         <div class="mb-3">
                             <img src="{{ url('storage/' . $portofolio->image) }}" height="100px" alt="">

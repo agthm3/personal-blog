@@ -17,7 +17,8 @@
                 <h1>Edit Portofolio</h1>
                 <div class="bg-light rounded h-100 p-4">
 
-                    <form action="{{ route('update_portofolio', $portofolio) }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('update_dashboard_portofolio', $portofolio) }}" method="post"
+                        enctype="multipart/form-data">
                         @csrf
                         @method('patch')
                         <h6 class="mb-2">Image</h6>

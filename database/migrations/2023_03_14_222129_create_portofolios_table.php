@@ -15,16 +15,15 @@ return new class extends Migration
     {
         Schema::create('portofolios', function (Blueprint $table) {
             $table->id();
-            $table->longText('welcome_message')->nullable();
-            $table->string('github_link')->nullable();
-            $table->string('image')->nullable();
-            $table->string('project_name')->nullable();
-            $table->string('client_name')->nullable();
-            $table->string('year')->nullable();
-            $table->string('live_preview')->nullable();
-            $table->string('title')->nullable();
-            $table->longText('description')->nullable();
-            $table->string('price')->nullable();
+            $table->string('project_name');
+            $table->string('client_name');
+            $table->string('year');
+            $table->string('live_preview');
+            $table->string('github_link');
+            $table->string('title');
+            $table->longText('description');
+            $table->string('price');
+            $table->string('image');
             $table->timestamps();
         });
     }

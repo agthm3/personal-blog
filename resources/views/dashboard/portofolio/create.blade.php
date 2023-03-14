@@ -16,7 +16,7 @@
             <div class="col-sm-12 col-xl-12">
                 <h1>Create New Portofolio</h1>
                 <div class="bg-light rounded h-100 p-4">
-                    <form action="{{ route('store_portofolio') }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('store_dashboard_portofolio') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <h6 class="mb-4">Gambar</h6>
                         <div class="mb-3">
