@@ -13,39 +13,39 @@
                 </ul>
             </div>
         @endif
-        {{-- <div class="row g-4">
+        <div class="row g-4">
             <div class="col-sm-12 col-xl-12">
                 <div class="bg-light rounded h-100 p-4">
                     <h6 class="mb-4">Welcome Message</h6>
                     <div class="form-floating">
-                        @if ($portofolioinfo == null)
+                        @if ($portofolioInfo == null)
                             <p>Belum ada welcome message</p>
                         @else
-                            {!! $portofolioinfo->welcome_message !!}
+                            {!! $portofolioInfo->welcome_message !!}
                         @endif
                     </div>
                     <h6 class="mb-4 mt-2">Github Link</h6>
                     <div class="form-floating">
-                        @if ($portofolioinfo == null)
+                        @if ($portofolioInfo == null)
                             <p>Belum ada Github link</p>
                         @else
-                            <p>{{ $portofolioinfo->github_link }}</p>
+                            <p>{{ $portofolioInfo->github_link }}</p>
                         @endif
                     </div>
-                    @if ($portofolioinfo == null)
-                        <a href="{{ route('create_infos') }}">
+                    @if ($portofolioInfo == null)
+                        <a href="{{ route('create_info_portofolio') }}">
                             <button type="submit" class="btn btn-primary mt-2">
                                 Tambah
                             </button></a>
                     @else
-                        <a href="{{ route('edit_dashboard_info_portofolio', $portofolioinfo) }}">
-                            <button type="submit" class="btn btn-primary mt-2">
-                                Edit
-                            </button></a>
+                        <form action="{{ route('edit_info_portofolio', $portofolioInfo) }}" method="get">
+                            @csrf
+                            <button type="submit" class="btn btn-primary mt-2">Edit</button>
+                        </form>
                     @endif
                 </div>
             </div>
-        </div> --}}
+        </div>
 
         <div class="bg-light text-center rounded p-4 mt-2">
             <div class="d-flex align-items-center justify-content-between mb-4">

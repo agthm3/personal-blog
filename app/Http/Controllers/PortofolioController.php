@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Portofolio;
+use App\Models\PortofolioInfo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
@@ -14,12 +15,17 @@ class PortofolioController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function index()
+    {
+        return view('pages.portofolio.index');
+    }
     public function index_dashboard()
     {
         //Logic untuk mengaktifkan warna di navbar
         session(['active_button' => 'portofolio']);
+        $portofolioInfo  = PortofolioInfo::find(1);
         $portofolios = Portofolio::all();
-        return view('dashboard.portofolio.index', compact('portofolios'));
+        return view('dashboard.portofolio.index', compact('portofolios', 'portofolioInfo'));
     }
 
     /**
@@ -30,6 +36,10 @@ class PortofolioController extends Controller
     public function create_dashboard()
     {
         return view('dashboard.portofolio.create');
+    }
+    public function create_info_portofolio()
+    {
+        return view('dashboard.portofolio.create_info');
     }
 
     /**
@@ -68,6 +78,22 @@ class PortofolioController extends Controller
 
         return Redirect::route('index_dashboard_portofolio');
     }
+    public function store_info_portofolio(Request $request)
+    {
+        $request->validate([
+            'welcome_message' => 'required',
+            'github_link' => 'required'
+        ]);
+
+        PortofolioInfo::create([
+            'welcome_message' => $request->welcome_message,
+            'github_link' => $request->github_link
+        ]);
+
+        $portofolioinfo = PortofolioInfo::find(1);
+        $portofolios = Portofolio::all();
+        return view('dashboard.portofolio.index', compact('portofolioinfo', 'portofolios'));
+    }
 
     /**
      * Display the specified resource.
@@ -89,6 +115,11 @@ class PortofolioController extends Controller
     public function edit_portofolio(Portofolio $portofolio)
     {
         return view('dashboard.portofolio.edit', compact('portofolio'));
+    }
+
+    public function edit_info_portofolio(PortofolioInfo $portofolioInfo)
+    {
+        return view('dashboard.portofolio.edit_info', compact('portofolioInfo'));
     }
 
     /**
@@ -126,10 +157,25 @@ class PortofolioController extends Controller
             'price' => $request->price,
             'image' => $path
         ]);
+        
 
         return Redirect::route('index_dashboard_portofolio');
     }
+    public function update_info_portofolio(Request $request, portofolioInfo $portofolioInfo)
+    {
+        $request->validate([
+            'welcome_message'=>'required',
+            'github_link'=>'required',
+        ]);
 
+        $portofolioInfo->update([
+            'welcome_message' => $request->welcome_message,
+            'github_link' => $request->github_link,
+        ]);
+        
+        return Redirect::route('index_dashboard_portofolio', compact('portofolioInfo'));
+      
+    }
     /**
      * Remove the specified resource from storage.
      *
