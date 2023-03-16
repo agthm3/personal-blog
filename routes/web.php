@@ -51,6 +51,8 @@ Route::patch('/dashboard/portofolio/update/{portofolioInfo}/update', [Portofolio
 
 //article
 Route::get('/article', [ArticleController::class, 'index'])->name('index_article');
+Route::get('/dashboard/article/info/create', [ArticleController::class, 'create_info'])->name('create_info_article');
+Route::post('/dashboard/article/info/create', [ArticleController::class, 'store_info'])->name('store_info_article');
 //contact
 Route::get('/contact', [ContactController::class, 'index'])->name('index_contact');
 Route::get('/dashboard/contact', [ContactController::class, 'index_contact'])->name('index_dashboard_contact');

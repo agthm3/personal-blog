@@ -8,10 +8,14 @@
                 <div class="bg-light rounded h-100 p-4">
                     <h6 class="mb-4">Welcome Message</h6>
                     <div class="form-floating">
-                        <p>Belum ada welcome message</p>
+                        @if ($articles == null)
+                            <p>Belum ada welcome message</p>
+                        @else
+                            {{ $articles->welcome_message }}
+                        @endif
                     </div>
 
-                    <a href="add_portofolio.html">
+                    <a href="{{ route('create_info_article') }}">
                         <button type="submit" class="btn btn-primary mt-2">
                             Tambah
                         </button></a>

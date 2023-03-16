@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Article;
 use App\Models\Home;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -41,7 +42,9 @@ class HomeController extends Controller
     public function index_article()
     {       //Logic untuk mengaktifkan warna di navbar
           session(['active_button' => 'article']);
-        return view('dashboard.article.index');
+
+        $articles = Article::find(1);
+        return view('dashboard.article.index', compact('articles'));
     }
     public function index_comment()
     {       //Logic untuk mengaktifkan warna di navbar
