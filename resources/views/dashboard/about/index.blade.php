@@ -133,8 +133,12 @@
                                 <td>{{ $achievement->year }}</td>
                                 <td>{{ $achievement->achievement }}</td>
                                 <td>
-                                    <a class="btn btn-sm btn-primary" href="">Hapus</a>
-                                    <a class="btn btn-sm btn-primary" href="">Edit</a>
+                                    <form action="{{ route('delete_achievement', $achievement) }}" method="post">
+                                        @csrf
+                                        @method('delete')
+                                        <button type="submit" class="btn btn-sm btn-primary mb-1">Hapus</button>
+                                    </form>
+
                                 </td>
                             </tr>
                         @endforeach

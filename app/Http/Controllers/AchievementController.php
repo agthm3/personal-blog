@@ -95,8 +95,10 @@ class AchievementController extends Controller
      * @param  \App\Models\Achievement  $achievement
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Achievement $achievement)
+    public function delete(Achievement $achievement)
     {
-        //
+        $achievement->delete();
+
+        return Redirect::back();
     }
 }

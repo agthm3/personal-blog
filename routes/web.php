@@ -86,6 +86,7 @@ Route::delete('/experiece/{id}/delete', [AboutController::class, 'delete_dashboa
 //Achivement
 Route::get('/dashboard/achievement/create', [AchievementController::class, 'create'])->name('create_achievement');
 Route::post('/dashboard/achievement/store', [AchievementController::class, 'store'])->name('store_achievement');
+Route::delete('/dashboard/achievement/{achievement}/delete', [AchievementController::class, 'delete'])->name('delete_achievement');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
