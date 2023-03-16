@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\AchievementController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
@@ -68,7 +69,7 @@ Route::post('/home/store', [HomeController::class, 'store_home'])->name('store_d
 
 
 
-
+//About
 Route::get('/dashboard/about', [AboutController::class, 'index_about'])->name('index_dashboard_about');
 Route::get('/dashboard/add', [AboutController::class, 'add_info_about'])->name('add_info_about');
 Route::post('/dashboard/add/info', [AboutController::class, 'store_info_about'])->name('store_info_about');
@@ -81,11 +82,10 @@ Route::get('/dashboard/comment', [HomeController::class, 'index_comment'])->name
 Route::get('/experience/create', [AboutController::class, 'create_experience'])->name('create_experience');
 Route::post('/experience/create', [AboutController::class, 'store_dashboard_experiece'])->name('store_dashboard_experiece');
 Route::delete('/experiece/{id}/delete', [AboutController::class, 'delete_dashboard_experience'])->name('delete_dashboard_experience');
-// Route::get('/experience/edit/{id}', [AboutController::class, 'edit_dashboard_experience'])->name('edit_dashboard_experience');
 
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
+//Achivement
+Route::get('/dashboard/achievement/create', [AchievementController::class, 'create'])->name('create_achievement');
+Route::post('/dashboard/achievement/store', [AchievementController::class, 'store'])->name('store_achievement');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

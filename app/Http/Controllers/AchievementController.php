@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Achievement;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class AchievementController extends Controller
 {
@@ -24,7 +26,7 @@ class AchievementController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.achievement.create');
     }
 
     /**
@@ -35,7 +37,22 @@ class AchievementController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'year'=> 'required',
+            'achievement' => 'required'
+        ]);
+        $user_id = Auth::id();
+
+        Achievement::create([
+            'year' => $request->year,
+            'achievement'=> $request->achievement,
+            'user_id' => $user_id
+        ]);
+
+      
+
+        $achievements =  Achievement::all();
+        return Redirect::route('index_dashboard_about', compact('achievements'));
     }
 
     /**

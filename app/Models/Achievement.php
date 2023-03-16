@@ -11,7 +11,8 @@ class Achievement extends Model
 
     protected $fillable = [
         'year',
-        'achievement'
+        'achievement',
+        'user_id'
     ];
 
     public function user(){

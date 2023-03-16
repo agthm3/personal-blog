@@ -108,7 +108,7 @@
         <div class="bg-light text-center rounded p-4 mt-2">
             <div class="d-flex align-items-center justify-content-between mb-4">
                 <h6 class="mb-0">Pencapaian / Sertifikat</h6>
-                <a href="create_achivement.html">Create</a>
+                <a href="{{ route('create_achievement') }}">Create</a>
             </div>
             <div class="table-responsive">
                 <table class="table text-start align-middle table-bordered table-hover mb-0">
@@ -124,30 +124,20 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>
-                                <input class="form-check-input" type="checkbox" />
-                            </td>
-                            <td>01 Jan 2045</td>
-                            <td>INV-0123</td>
-                            <td>Jhon Doe</td>
-                            <td>
-                                <a class="btn btn-sm btn-primary" href="">Hapus</a>
-                                <a class="btn btn-sm btn-primary" href="">Edit</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input class="form-check-input" type="checkbox" />
-                            </td>
-                            <td>01 Jan 2045</td>
-                            <td>INV-0123</td>
-                            <td>Jhon Doe</td>
-                            <td>
-                                <a class="btn btn-sm btn-primary" href="">Hapus</a>
-                                <a class="btn btn-sm btn-primary" href="">Edit</a>
-                            </td>
-                        </tr>
+                        @foreach ($achievements as $achievement)
+                            <tr>
+                                <td>
+                                    <input class="form-check-input" type="checkbox" />
+                                </td>
+                                <td>{{ $achievement->created_at }}</td>
+                                <td>{{ $achievement->year }}</td>
+                                <td>{{ $achievement->achievement }}</td>
+                                <td>
+                                    <a class="btn btn-sm btn-primary" href="">Hapus</a>
+                                    <a class="btn btn-sm btn-primary" href="">Edit</a>
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

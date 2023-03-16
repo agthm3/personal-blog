@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\About;
+use App\Models\Achievement;
 use App\Models\JobExperience;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -30,7 +31,8 @@ class AboutController extends Controller
         $user_id = Auth::user()->id;
         $jobexperiences = JobExperience::where('user_id', $user_id)->get();
         $about = About::find(1);
-        return view('dashboard.about.index', compact('about', 'jobexperiences'));
+        $achievements = Achievement::all();
+        return view('dashboard.about.index', compact('about', 'jobexperiences', 'achievements'));
     }
 
     public function add_info_about()
