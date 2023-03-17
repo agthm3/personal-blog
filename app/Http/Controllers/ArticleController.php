@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
+use App\Models\ArticleInfo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
 
 class ArticleController extends Controller
 {
@@ -31,7 +33,10 @@ class ArticleController extends Controller
     {
         return view('dashboard.article.create_info');
     }
-
+    public function create_dashboard_article()
+    {
+        return view('dashboard.article.create');
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -49,14 +54,35 @@ class ArticleController extends Controller
 
         ]);
 
-        Article::create([
+        ArticleInfo::create([
             'welcome_message' => $request->welcome_message
         ]);
-        $articles = Article::find(1);
 
+        $articles_info = Article::whereNotNull('welcome_message')->get(['welcome_message']);
+
+        return Redirect::route('index_dashboard_article', compact('articles_info'));
+    }
+    public function store_dashboard_article(Request $request)
+    {
+        $request->validate([
+            'title' => 'required',
+            'article' => 'required',
+            'image' => 'required|image',
+        ]);
+
+        $file = $request->file('image');
+        $path = time() . '_' . $request->name . '.' . $file->getClientOriginalExtension();
+
+        Storage::disk('local')->put('public/'. $path, file_get_contents($file));
+
+        Article::create([
+            'title' => $request->title,
+            'article' => $request->article,
+            'image' => $path
+        ]);
+        $articles = Article::all();
         return Redirect::route('index_dashboard_article', compact('articles'));
     }
-
     /**
      * Display the specified resource.
      *
@@ -78,7 +104,10 @@ class ArticleController extends Controller
     {
         //
     }
-
+    public function edit_info(ArticleInfo $articleInfo)
+    {
+        return view('dashboard.article.edit_info', compact('articleInfo'));
+    }
     /**
      * Update the specified resource in storage.
      *
@@ -90,7 +119,18 @@ class ArticleController extends Controller
     {
         //
     }
+    public function update_info(Request $request, ArticleInfo $articleInfo)
+    {
+        $request->validate([
+            'welcome_message' => 'required'
+        ]);
 
+        $articleInfo->update([
+            'welcome_message'=> $request->welcome_message
+        ]);
+
+        return Redirect::route('index_dashboard_article');
+    }
     /**
      * Remove the specified resource from storage.
      *

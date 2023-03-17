@@ -3,22 +3,33 @@
 @section('content')
     <!-- Form Start -->
     <div class="container-fluid pt-4 px-4">
+
         <div class="row g-4">
             <div class="col-sm-12 col-xl-12">
                 <div class="bg-light rounded h-100 p-4">
                     <h6 class="mb-4">Welcome Message</h6>
                     <div class="form-floating">
-                        @if ($articles == null)
+
+                        @if ($articleInfo == null)
                             <p>Belum ada welcome message</p>
                         @else
-                            {{ $articles->welcome_message }}
+                            {{ $articleInfo->welcome_message }}
                         @endif
+
                     </div>
 
-                    <a href="{{ route('create_info_article') }}">
-                        <button type="submit" class="btn btn-primary mt-2">
-                            Tambah
-                        </button></a>
+                    @if ($articleInfo == null)
+                        <a href="{{ route('create_info_article') }}">
+                            <button type="submit" class="btn btn-primary mt-2">
+                                Tambah
+                            </button></a>
+                    @else
+                        <a href="{{ route('edit_info_article', $articleInfo) }}">
+                            <p class="btn btn-primary mt-2"> Edit</p>
+                        </a>
+                    @endif
+
+
                 </div>
             </div>
         </div>
@@ -26,7 +37,7 @@
         <div class="bg-light text-center rounded p-4 mt-2">
             <div class="d-flex align-items-center justify-content-between mb-4">
                 <h6 class="mb-0">Artikel</h6>
-                <a href="create_article.html">Create</a>
+                <a href="{{ route('create_dashboard_article') }}">Create</a>
             </div>
             <div class="table-responsive">
                 <table class="table text-start align-middle table-bordered table-hover mb-0">

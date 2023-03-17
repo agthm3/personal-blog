@@ -53,6 +53,12 @@ Route::patch('/dashboard/portofolio/update/{portofolioInfo}/update', [Portofolio
 Route::get('/article', [ArticleController::class, 'index'])->name('index_article');
 Route::get('/dashboard/article/info/create', [ArticleController::class, 'create_info'])->name('create_info_article');
 Route::post('/dashboard/article/info/create', [ArticleController::class, 'store_info'])->name('store_info_article');
+Route::get('/dashboard/article/info/{articleInfo}/edit', [ArticleController::class, 'edit_info'])->name('edit_info_article');
+Route::patch('/dashboard/article/info/{articleInfo}/update', [ArticleController::class, 'update_info'])->name('update_info_article');
+Route::get('/dashboard/article', [HomeController::class, 'index_article'])->name('index_dashboard_article');
+Route::get('/dashboard/article/create', [ArticleController::class, 'create_dashboard_article'])->name('create_dashboard_article');
+Route::post('/dashboard/article/store', [ArticleController::class, 'store_dashboard_article'])->name('store_dashboard_article');
+
 //contact
 Route::get('/contact', [ContactController::class, 'index'])->name('index_contact');
 Route::get('/dashboard/contact', [ContactController::class, 'index_contact'])->name('index_dashboard_contact');
@@ -78,7 +84,7 @@ Route::post('/dashboard/add/info', [AboutController::class, 'store_info_about'])
 Route::get('/dashboard/edit', [AboutController::class, 'edit_info_about'])->name('edit_info_about');
 Route::patch('/dashboard/edit/{about}', [AboutController::class, 'update_info_about'])->name('update_info_about');
 
-Route::get('/dashboard/article', [HomeController::class, 'index_article'])->name('index_dashboard_article');
+
 Route::get('/dashboard/comment', [HomeController::class, 'index_comment'])->name('index_dashboard_comment');
 
 Route::get('/experience/create', [AboutController::class, 'create_experience'])->name('create_experience');

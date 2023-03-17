@@ -5,14 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Article extends Model
+class ArticleInfo extends Model
 {
     use HasFactory;
-
     protected $fillable =[
-        'welcome_message',
-        'image',
-        'title',
-        'article',
+        'welcome_message'
     ];
 }
