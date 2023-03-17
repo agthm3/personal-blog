@@ -40,16 +40,7 @@ class HomeController extends Controller
 
 
 
-    public function index_article()
-    {       //Logic untuk mengaktifkan warna di navbar
-          session(['active_button' => 'article']);
 
-        $articleInfo = ArticleInfo::find(1);
-        $articles = Article::all();
-
-        
-        return view('dashboard.article.index', compact('articles', 'articleInfo'));
-    }
     public function index_comment()
     {       //Logic untuk mengaktifkan warna di navbar
           session(['active_button' => 'comment']);

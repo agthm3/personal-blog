@@ -54,32 +54,28 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>
-                                <input class="form-check-input" type="checkbox" />
-                            </td>
-                            <td>01 Jan 2045</td>
-                            <td>INV-0123</td>
-                            <td>Jhon Doe</td>
-                            <td>$123</td>
-                            <td>
-                                <a class="btn btn-sm btn-primary" href="">Hapus</a>
-                                <a class="btn btn-sm btn-primary" href="">Edit</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input class="form-check-input" type="checkbox" />
-                            </td>
-                            <td>01 Jan 2045</td>
-                            <td>INV-0123</td>
-                            <td>Jhon Doe</td>
-                            <td>$123</td>
-                            <td>
-                                <a class="btn btn-sm btn-primary" href="">Hapus</a>
-                                <a class="btn btn-sm btn-primary" href="">Edit</a>
-                            </td>
-                        </tr>
+                        @foreach ($articles as $article)
+                            <tr>
+                                <td>
+                                    <input class="form-check-input" type="checkbox" />
+                                </td>
+                                <td>{{ $article->created_at }}</td>
+                                <td>{{ $article->title }}</td>
+                                <td>{{ Auth::user()->name }}</td>
+                                <td>$123</td>
+                                <td>
+                                    <form action="{{ route('delete_dashboard_article', $article) }}" method="post">
+                                        @csrf
+                                        @method('delete')
+                                        <button class="btn btn-sm btn-primary mb-1" type="submit">Hapus</button>
+                                    </form>
+                                    <form action="{{ route('show_dashboard_article', $article) }}" method="get">
+                                        <button class="btn btn-sm btn-primary" type="submit">Detail</button>
+                                    </form>
+
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

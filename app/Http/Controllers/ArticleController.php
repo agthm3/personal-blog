@@ -19,7 +19,16 @@ class ArticleController extends Controller
     {
         return view('pages.article.index');
     }
+    public function index_article()
+    {       //Logic untuk mengaktifkan warna di navbar
+          session(['active_button' => 'article']);
 
+        $articleInfo = ArticleInfo::find(1);
+        $articles = Article::all();
+
+        
+        return view('dashboard.article.index', compact('articles', 'articleInfo'));
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -93,7 +102,10 @@ class ArticleController extends Controller
     {
         //
     }
-
+    public function show_article(Article $article)
+    {
+        return view('dashboard.article.show', compact('article'));
+    }
     /**
      * Show the form for editing the specified resource.
      *
@@ -107,6 +119,10 @@ class ArticleController extends Controller
     public function edit_info(ArticleInfo $articleInfo)
     {
         return view('dashboard.article.edit_info', compact('articleInfo'));
+    }
+    public function edit_article(Article $article)
+    {
+        return view('dashboard.article.edit', compact('article'));
     }
     /**
      * Update the specified resource in storage.
@@ -131,6 +147,26 @@ class ArticleController extends Controller
 
         return Redirect::route('index_dashboard_article');
     }
+    public function update_article(Request $request, Article $article)
+    {
+        $request->validate([
+            'title'=>'required',
+            'article'=>'required',
+            'image' => 'required'
+        ]);
+        $file = $request->file('image');
+        $path = time() . '_' . $request->name . '.' . $file->getClientOriginalExtension();
+
+        Storage::disk('local')->put('public/'. $path, file_get_contents($file));
+        $article->update([
+            'title' => $request->title,
+            'article' => $request->article,
+            'image' => $path
+        ]);
+        
+
+        return Redirect::route('index_dashboard_article');
+    }
     /**
      * Remove the specified resource from storage.
      *
@@ -141,4 +177,12 @@ class ArticleController extends Controller
     {
         //
     }
+    public function delete_dashboard_article(Article $article)
+    {
+        $article->delete();
+
+        return Redirect::route('index_dashboard_article');
+    }
+    
+
 }
