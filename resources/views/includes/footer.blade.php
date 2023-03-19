@@ -18,9 +18,8 @@
                  </h1>
              </li>
              <li class="right-footer-contnet">
-                 <a href="#">Twitter</a>
-                 <a href="#">Linkedin</a>
-                 <a href="#">Github</a>
+                 <a href="https://www.linkedin.com/in/andigigatera/">Linkedin</a>
+                 <a href="https://github.com/agthm3">Github</a>
              </li>
              <li class="left-footer-content mobile">
                  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
