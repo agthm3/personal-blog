@@ -40,18 +40,10 @@
             <script src="js/respond.min.js"></script>
         <![endif]-->
 
+
 </head>
 
 <body class="page">
-    <table class="doc-loader">
-        <tbody>
-            <tr>
-                <td>
-                    <img src="{{ asset('pages/images/ajax-document-loader.gif') }}" alt="Loading..." />
-                </td>
-            </tr>
-        </tbody>
-    </table>
 
     <div class="header-search">
         <div class="content-1330 center-relative">

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Article;
 use App\Models\ArticleInfo;
 use App\Models\Home;
+use App\Models\Portofolio;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
@@ -18,8 +19,10 @@ class HomeController extends Controller
     public function index()
     {   
        $messages = Home::find(1);
+       $portofolios = Portofolio::all();
+       $articles = Article::all();
 
-        return view('pages.home.index', compact('messages'));
+        return view('pages.home.index', compact('messages', 'portofolios', 'articles'));
     }
 
     public function index_dashboard()

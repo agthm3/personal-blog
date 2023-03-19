@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Contact;
 use App\Models\Portofolio;
 use App\Models\PortofolioInfo;
 use Illuminate\Http\Request;
@@ -17,7 +18,9 @@ class PortofolioController extends Controller
      */
     public function index()
     {
-        return view('pages.portofolio.index');
+        $portofolios = Portofolio::all();
+        $github = PortofolioInfo::all();
+        return view('pages.portofolio.index', compact('portofolios', 'github'));
     }
     public function index_dashboard()
     {
@@ -90,9 +93,9 @@ class PortofolioController extends Controller
             'github_link' => $request->github_link
         ]);
 
-        $portofolioinfo = PortofolioInfo::find(1);
+        $portofolioInfo = PortofolioInfo::find(1);
         $portofolios = Portofolio::all();
-        return view('dashboard.portofolio.index', compact('portofolioinfo', 'portofolios'));
+        return view('dashboard.portofolio.index', compact('portofolioInfo', 'portofolios'));
     }
 
     /**
@@ -104,6 +107,12 @@ class PortofolioController extends Controller
     public function show_portofolio(Portofolio $portofolio)
     {
         return view('dashboard.portofolio.show', compact('portofolio'));
+    }
+    public function show_pages_portofolio(Portofolio $portofolio)
+    {
+          //Logic untuk mengaktifkan warna di navbar
+        session(['active_button' => 'portofolio']);
+      return view('pages.portofolio.show', compact('portofolio'));   
     }
 
     /**

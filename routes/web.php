@@ -48,6 +48,8 @@ Route::get('/dashboard/portofolio/info', [PortofolioController::class, 'create_i
 Route::post('/dashboard/portofolio/info/create', [PortofolioController::class,'store_info_portofolio'])->name('store_info_portofolio');
 Route::get('/dashboard/portofolio/edit/{portofolioInfo}/info', [PortofolioController::class, 'edit_info_portofolio'])->name('edit_info_portofolio');
 Route::patch('/dashboard/portofolio/update/{portofolioInfo}/update', [PortofolioController::class, 'update_info_portofolio'])->name('update_info_portofolio');
+//Pages Portofolio 
+Route::get('/portofolio/{portofolio}/detail', [PortofolioController::class, 'show_pages_portofolio'])->name('pages_portofolio_show');
 
 //article
 Route::get('/article', [ArticleController::class, 'index'])->name('index_article');
@@ -85,7 +87,7 @@ Route::post('/home/store', [HomeController::class, 'store_home'])->name('store_d
 Route::get('/dashboard/about', [AboutController::class, 'index_about'])->name('index_dashboard_about');
 Route::get('/dashboard/add', [AboutController::class, 'add_info_about'])->name('add_info_about');
 Route::post('/dashboard/add/info', [AboutController::class, 'store_info_about'])->name('store_info_about');
-Route::get('/dashboard/edit', [AboutController::class, 'edit_info_about'])->name('edit_info_about');
+Route::get('/dashboard/{about}/edit', [AboutController::class, 'edit_info_about'])->name('edit_info_about');
 Route::patch('/dashboard/edit/{about}', [AboutController::class, 'update_info_about'])->name('update_info_about');
 
 

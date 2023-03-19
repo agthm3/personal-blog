@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\About;
 use App\Models\Achievement;
+use App\Models\Contact;
 use App\Models\JobExperience;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -21,9 +22,13 @@ class AboutController extends Controller
      */
     public function index()
     {
-        return view('pages.about.index');
+        $about = About::all();
+        $jobexperience = JobExperience::all();
+        $achievements = Achievement::all();
+        $linked = Contact::all();
+        return view('pages.about.index', compact('about', 'jobexperience', 'achievements', 'linked'));
     }
-    public function index_about(    )
+    public function index_about(About $about)
     {       //Logic untuk mengaktifkan warna di navbar
           session(['active_button' => 'about']);
 
@@ -32,6 +37,7 @@ class AboutController extends Controller
         $jobexperiences = JobExperience::where('user_id', $user_id)->get();
         $about = About::find(1);
         $achievements = Achievement::all();
+
         return view('dashboard.about.index', compact('about', 'jobexperiences', 'achievements'));
     }
 
