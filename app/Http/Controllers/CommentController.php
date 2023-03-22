@@ -19,6 +19,11 @@ class CommentController extends Controller
     {
         //
     }
+    public function index_dashboard()
+    {
+        $comments = Comment::all();
+        return view('dashboard.comment.index', compact('comments'));
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -98,5 +103,11 @@ class CommentController extends Controller
     public function destroy(Comment $comment)
     {
         //
+    }
+    public function delete_comment(Comment $comment)
+    {
+        $comment->delete();
+
+        return Redirect::back();
     }
 }

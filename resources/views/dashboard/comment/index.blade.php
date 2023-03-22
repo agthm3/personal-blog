@@ -19,32 +19,25 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>
-                                <input class="form-check-input" type="checkbox" />
-                            </td>
-                            <td>01 Jan 2045</td>
-                            <td>INV-0123</td>
-                            <td>Jhon Doe</td>
-                            <td>$123</td>
-                            <td>
-                                <a class="btn btn-sm btn-primary" href="">Hapus</a>
-                                <a class="btn btn-sm btn-primary" href="">Edit</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input class="form-check-input" type="checkbox" />
-                            </td>
-                            <td>01 Jan 2045</td>
-                            <td>INV-0123</td>
-                            <td>Jhon Doe</td>
-                            <td>$123</td>
-                            <td>
-                                <a class="btn btn-sm btn-primary" href="">Hapus</a>
-                                <a class="btn btn-sm btn-primary" href="">Edit</a>
-                            </td>
-                        </tr>
+                        @foreach ($comments as $comment)
+                            <tr>
+                                <td>
+                                    <input class="form-check-input" type="checkbox" />
+                                </td>
+                                <td>{{ $comment->created_at->format('d M Y') }}</td>
+                                <td>{{ $comment->article->title }}</td>
+                                <td>{{ $comment->content }}</td>
+                                <td>{{ $comment->user->name }}</td>
+                                <td>
+                                    <form action="{{ route('delete_comment', $comment) }}" method="post">
+                                        @csrf
+                                        @method('delete')
+                                        <button type="submit" class="btn btn-sm btn-primary"><a>Hapus</a></button>
+
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

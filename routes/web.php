@@ -70,6 +70,8 @@ Route::patch('/dashboard/article/{article}/update', [ArticleController::class, '
 //Comment
 Route::post('/comment', [CommentController::class, 'store'])->name('store_comment');
 
+
+
 //contact
 Route::get('/contact', [ContactController::class, 'index'])->name('index_contact');
 Route::get('/dashboard/contact', [ContactController::class, 'index_contact'])->name('index_dashboard_contact');
@@ -95,8 +97,9 @@ Route::post('/dashboard/add/info', [AboutController::class, 'store_info_about'])
 Route::get('/dashboard/{about}/edit', [AboutController::class, 'edit_info_about'])->name('edit_info_about');
 Route::patch('/dashboard/edit/{about}', [AboutController::class, 'update_info_about'])->name('update_info_about');
 
-
-Route::get('/dashboard/comment', [HomeController::class, 'index_comment'])->name('index_dashboard_comment');
+// Dashboard Comment
+Route::get('/dashboard/comment', [CommentController::class, 'index_dashboard'])->name('index_dashboard_comment');
+Route::delete('/dashboard/comment/{comment}', [CommentController::class, 'delete_comment'])->name('delete_comment');
 
 Route::get('/experience/create', [AboutController::class, 'create_experience'])->name('create_experience');
 Route::post('/experience/create', [AboutController::class, 'store_dashboard_experiece'])->name('store_dashboard_experiece');

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use App\Models\ArticleInfo;
+use App\Models\Comment;
 use App\Models\Home;
 use App\Models\Portofolio;
 use Illuminate\Http\Request;
@@ -47,7 +48,8 @@ class HomeController extends Controller
     public function index_comment()
     {       //Logic untuk mengaktifkan warna di navbar
           session(['active_button' => 'comment']);
-        return view('dashboard.comment.index');
+         $comments = Comment::all();
+        return view('dashboard.comment.index', compact('comments'));
     }
     /**
      * Show the form for creating a new resource.
