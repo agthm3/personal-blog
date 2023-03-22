@@ -18,10 +18,10 @@
             </li>
         </ul>
     </nav>
-    <div class="toggle-holder relative right">
+    {{-- <div class="toggle-holder relative right">
         <div id="toggle">
             <i class="fa fa-search"></i>
         </div>
-    </div>
+    </div> --}}
     <div class="clear"></div>
 </div>

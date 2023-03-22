@@ -15,7 +15,9 @@ class ContactController extends Controller
      */
     public function index()
     {
-        return view('pages.contact.index');
+        session(['active_button' => 'contact']);
+        $contact = Contact::all();
+        return view('pages.contact.index', compact('contact'));
     }
     public function index_contact()
     {       //Logic untuk mengaktifkan warna di navbar

@@ -37,7 +37,7 @@
         </tbody>
     </table>
 
-    <div class="header-search">
+    {{-- <div class="header-search">
         <div class="content-1330 center-relative">
             <form class="search-form">
                 <label>
@@ -46,7 +46,7 @@
                 </label>
             </form>
         </div>
-    </div>
+    </div> --}}
 
     <div class="body-wrapper">
         <div class="content-1330 header-holder center-relative">
