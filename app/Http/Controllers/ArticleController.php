@@ -109,7 +109,12 @@ class ArticleController extends Controller
      */
     public function show(Article $article)
     {
-        return view('pages.article.show', compact('article'));
+        // ambil artikel sebelumnya
+        $previousArticle = Article::where('id', '<', $article->id)->orderBy('id', 'desc')->first();
+
+        // ambil artikel selanjutnya
+        $nextArticle = Article::where('id', '>', $article->id)->orderBy('id', 'asc')->first();
+        return view('pages.article.show', compact('article', 'nextArticle','previousArticle' ));
     }
     public function show_article(Article $article)
     {

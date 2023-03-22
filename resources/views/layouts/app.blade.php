@@ -31,7 +31,7 @@
         <tbody>
             <tr>
                 <td>
-                    <img src="images/ajax-document-loader.gif" alt="Loading..." />
+                    <img src="{{ asset('pages/images/ajax-document-loader.gif') }}" alt="Loading..." />
                 </td>
             </tr>
         </tbody>
@@ -73,7 +73,7 @@
         <div id="content" class="site-content content-1330 center-relative">
             @yield('content')
         </div>
-
+        
         <!--Footer-->
 
         @include('includes.footer')
