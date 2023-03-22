@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Article;
 use App\Models\Comment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class CommentController extends Controller
 {
@@ -35,7 +38,21 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'content' => 'required'
+        ]);
+
+        $user_id = Auth::id();
+
+        Comment::create([
+            'content' => $request->content,
+            'article_id' => $request->article_id,
+            'user_id' => $user_id
+        ]);
+
+        return Redirect::back();
+        // $comment->article_id = $request->article_id;
+        // $comment->user_id = auth()->user()->id;
     }
 
     /**

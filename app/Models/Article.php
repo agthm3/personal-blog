@@ -24,4 +24,8 @@ class Article extends Model
     {
         return $this->hasOne(Tag::class);
     }
+    public function comment()
+    {
+        return $this->hasMany(Comment::class);
+    }
 }

@@ -2,7 +2,7 @@
 <html lang="en-US">
 
 <head>
-    <title>Sun - Html Responsive Template</title>
+    <title>Andi Gigatera</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="description" content="Template by Dry Themes" />
     <meta name="keywords" content="HTML, CSS, JavaScript, PHP" />
@@ -73,7 +73,7 @@
         <div id="content" class="site-content content-1330 center-relative">
             @yield('content')
         </div>
-        
+
         <!--Footer-->
 
         @include('includes.footer')

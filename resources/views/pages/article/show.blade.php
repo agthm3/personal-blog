@@ -7,11 +7,11 @@
         </h1>
         <div class="post-full-width">
             <!-- <iframe
-                                                                                                                                                src="https://player.vimeo.com/video/150685211"
-                                                                                                                                                width="640"
-                                                                                                                                                height="360"
-                                                                                                                                                allowfullscreen="allowfullscreen"
-                                                                                                                                            ></iframe> -->
+                                                                                                                                                                                                                                                                                            src="https://player.vimeo.com/video/150685211"
+                                                                                                                                                                                                                                                                                            width="640"
+                                                                                                                                                                                                                                                                                            height="360"
+                                                                                                                                                                                                                                                                                            allowfullscreen="allowfullscreen"
+                                                                                                                                                                                                                                                                                        ></iframe> -->
             <center>
                 <img style="width: 60%" class="mb-2" src="{{ url('storage/' . $article->image) }}" alt="">
             </center>
@@ -26,7 +26,7 @@
                     </ul>
                 </div>
                 <div class="post-author">
-                    Penulis: <a href="#">{{ Auth::user()->name }}</a>
+                    Penulis: <a href="#">{{ $article->user->name }}</a>
                 </div>
                 <div class="post-date">Publish: {{ $article->created_at->format('d M Y') }}</div>
                 <div class="post-read-time">Read time: 1/2 h</div>
@@ -45,34 +45,41 @@
     <!-- komentar sebelumnya -->
     <hr />
     <div class="one_half">
-        <div>
-            <span style="font-weight: bolder">Andi Gigatera</span>
-            <p>Mantap mentong hahhaha</p>
-        </div>
-        <div>
-            <span style="font-weight: bolder">Andi Gigatera</span>
-            <p>bagus tawwwa, sangat menginspirasi</p>
-        </div>
-        <div>
-            <span style="font-weight: bolder">Andi Gigatera</span>
-            <p>Mantap mentong hahhaha</p>
-        </div>
+        @foreach ($article->comment as $comment)
+            <div>
+                <span style="font-weight: bolder">{{ $comment->user->name }}</span>
+                <p>{{ $comment->content }}</p>
+            </div>
+        @endforeach
+
     </div>
     <!-- kirim komentar -->
     <div class="one_half last">
         <div class="contact-form">
-            <p>
-                <input id="name" type="text" name="your-name" placeholder="Nama" />
-            </p>
-            <p>
-                <input id="contact-email" type="email" name="your-email" placeholder="Email" />
-            </p>
-            <p>
-                <textarea id="message" name="your-message" placeholder="Komentar"></textarea>
-            </p>
-            <p>
-                <input type="submit" onClick="SendMail()" value="KIRIM" />
-            </p>
+            @if (Auth::check())
+                <form action="{{ route('store_comment') }}" method="post">
+                    @csrf
+                    <h2>
+                        {{ Auth::user()->name }}
+                        {{-- <input id="name" type="text" name="name" placeholder="Nama"
+                            value="{{ Auth::user()->name }}" /> --}}
+                    </h2>
+                    <p>
+                        <textarea id="message" name="content" placeholder="Komentar"></textarea>
+                    </p>
+                    <p>
+                        <input type="hidden" name="article_id" value="{{ $article->id }}" />
+                    </p>
+                    <p>
+                        <input type="submit" value="KIRIM" />
+                    </p>
+                </form>
+            @else
+                <p>
+                    <a href="{{ route('login') }}"> <input type="submit" value="LOGIN" /></a>
+                    <a href="{{ route('register') }}"> <input type="submit" value="REGISTER" /></a>
+                </p>
+            @endif
         </div>
     </div>
 
@@ -82,7 +89,8 @@
             @if ($previousArticle == null)
                 <a href="">-</a>
             @else
-                <a href="{{ route('show_article', ['article' => $previousArticle->id]) }}">{{ $previousArticle->title }}</a>
+                <a
+                    href="{{ route('show_article', ['article' => $previousArticle->id]) }}">{{ $previousArticle->title }}</a>
             @endif
             {{-- <a href="#" rel="prev">{{ $previousArticle->title }}s</a> --}}
         </div>

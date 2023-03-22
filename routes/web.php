@@ -3,6 +3,7 @@
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\AchievementController;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PortofolioController;
@@ -66,6 +67,8 @@ Route::get('/dashboard/article/{article}/detail', [ArticleController::class, 'sh
 Route::get('/dashboard/article/{article}/edit', [ArticleController::class, 'edit_article'])->name('edit_dashboard_article');
 Route::patch('/dashboard/article/{article}/update', [ArticleController::class, 'update_article'])->name('update_dashboard_article');
 
+//Comment
+Route::post('/comment', [CommentController::class, 'store'])->name('store_comment');
 
 //contact
 Route::get('/contact', [ContactController::class, 'index'])->name('index_contact');
