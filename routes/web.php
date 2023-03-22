@@ -53,6 +53,7 @@ Route::get('/portofolio/{portofolio}/detail', [PortofolioController::class, 'sho
 
 //article
 Route::get('/article', [ArticleController::class, 'index'])->name('index_article');
+Route::get('/article/{article}', [ArticleController::class, 'show'])->name('show_article');
 Route::get('/dashboard/article/info/create', [ArticleController::class, 'create_info'])->name('create_info_article');
 Route::post('/dashboard/article/info/create', [ArticleController::class, 'store_info'])->name('store_info_article');
 Route::get('/dashboard/article/info/{articleInfo}/edit', [ArticleController::class, 'edit_info'])->name('edit_info_article');
@@ -64,6 +65,7 @@ Route::delete('/dashboard/article/{article}/delete', [ArticleController::class, 
 Route::get('/dashboard/article/{article}/detail', [ArticleController::class, 'show_article'])->name('show_dashboard_article');
 Route::get('/dashboard/article/{article}/edit', [ArticleController::class, 'edit_article'])->name('edit_dashboard_article');
 Route::patch('/dashboard/article/{article}/update', [ArticleController::class, 'update_article'])->name('update_dashboard_article');
+
 
 //contact
 Route::get('/contact', [ContactController::class, 'index'])->name('index_contact');

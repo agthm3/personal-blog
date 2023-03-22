@@ -14,5 +14,14 @@ class Article extends Model
         'image',
         'title',
         'article',
+    'user_id'
     ];
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+    public function tag()
+    {
+        return $this->hasOne(Tag::class);
+    }
 }

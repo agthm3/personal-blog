@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('image')->nullable();
             $table->string('title')->nullable();
             $table->longText('article')->nullable();
+            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete()->cascadeOnUpdate();
+            // $table->foreignId('tag_id')->constrained('tags')->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
     }

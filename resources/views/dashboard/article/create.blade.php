@@ -21,7 +21,7 @@
                             <h6 class="mb-2 mt-2">Article</h6>
                             <textarea name="article" id="" cols="30" rows="20" class="form-control"></textarea>
                             <h6 class="mb-2 mt-2">Tag</h6>
-                            <input type="text" class="form-control mt-2" id="input-github" name="tag" />
+                            <input type="text" class="form-control mt-2" id="input-github" name="tag_name" />
                         </div>
                         <button type="submit" class="btn btn-primary mt-2">
                             Simpan

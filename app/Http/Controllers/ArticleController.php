@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use App\Models\ArticleInfo;
+use App\Models\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
 
@@ -17,7 +19,9 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        return view('pages.article.index');
+        $info = ArticleInfo::all();
+        $articles = Article::all();
+        return view('pages.article.index', compact('info', 'articles'));
     }
     public function index_article()
     {       //Logic untuk mengaktifkan warna di navbar
@@ -77,18 +81,23 @@ class ArticleController extends Controller
             'title' => 'required',
             'article' => 'required',
             'image' => 'required|image',
+            // 'tag_name' => 'required'
         ]);
 
         $file = $request->file('image');
         $path = time() . '_' . $request->name . '.' . $file->getClientOriginalExtension();
 
         Storage::disk('local')->put('public/'. $path, file_get_contents($file));
+        $user_id = Auth::id();
 
         Article::create([
             'title' => $request->title,
             'article' => $request->article,
-            'image' => $path
+            'image' => $path,
+            'user_id' => $user_id,
+            'tag_name' => $request->tag_name
         ]);
+
         $articles = Article::all();
         return Redirect::route('index_dashboard_article', compact('articles'));
     }
@@ -100,7 +109,7 @@ class ArticleController extends Controller
      */
     public function show(Article $article)
     {
-        //
+        return view('pages.article.show', compact('article'));
     }
     public function show_article(Article $article)
     {
