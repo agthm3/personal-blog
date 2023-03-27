@@ -14,7 +14,8 @@ class Article extends Model
         'image',
         'title',
         'article',
-    'user_id'
+    'user_id',
+    'tag_id'
     ];
 
     public function user(){
@@ -22,7 +23,7 @@ class Article extends Model
     }
     public function tag()
     {
-        return $this->hasOne(Tag::class);
+        return $this->belongsTo(Tag::class);
     }
     public function comment()
     {

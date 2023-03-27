@@ -15,7 +15,7 @@
                 @if ($item->image == null)
                     <p>no image</p>
                 @else
-                    <img style="width: 100%" class="mb-2" src="{{ url('storage/' . $item->image) }}"><br />
+                    <center> <img style="width: 100%" class="mb-2" src="{{ url('storage/' . $item->image) }}"><br /></center>
                 @endif
             @endforeach
         </div>

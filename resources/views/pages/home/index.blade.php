@@ -35,7 +35,7 @@
                 @endforeach
                 @foreach ($articles as $article)
                     <div class="grid-item element-item p_one_third post show article">
-                        <a href="single-portfolio.html">
+                        <a href="{{ route('show_article', $article) }}">
                             <img src="{{ url('storage/' . $article->image) }}" class="mb-2" style="width: 100%"
                                 alt="">
                             <div class="portfolio-text-holder">

@@ -48,7 +48,8 @@ class ArticleController extends Controller
     }
     public function create_dashboard_article()
     {
-        return view('dashboard.article.create');
+        $tags = Tag::all();
+        return view('dashboard.article.create', compact('tags'));
     }
     /**
      * Store a newly created resource in storage.
@@ -77,11 +78,13 @@ class ArticleController extends Controller
     }
     public function store_dashboard_article(Request $request)
     {
+        // dd($request->tag_id);
         $request->validate([
             'title' => 'required',
             'article' => 'required',
             'image' => 'required|image',
-            // 'tag_name' => 'required'
+            'tag_id' => 'nullable',
+            'new_tag' => 'nullable|string|max:255',
         ]);
 
         $file = $request->file('image');
@@ -90,12 +93,27 @@ class ArticleController extends Controller
         Storage::disk('local')->put('public/'. $path, file_get_contents($file));
         $user_id = Auth::id();
 
+
+        $tag_id = null;
+        if ($request->filled('tag_id')) {
+            $tag_id = $request->input('tag_id');
+        } elseif ($request->filled('new_tag')) {
+            $tag = Tag::create([
+                'new_tag' => $request->new_tag
+            ]);
+            $tag_id = $tag->id;
+        }
+        if ($tag_id === null) {
+            return redirect()->back()->withErrors('Please select a tag or create a new one.');
+        }
+
+
         Article::create([
             'title' => $request->title,
             'article' => $request->article,
             'image' => $path,
             'user_id' => $user_id,
-            'tag_name' => $request->tag_name
+            'tag_id' => $tag_id
         ]);
 
         $articles = Article::all();
