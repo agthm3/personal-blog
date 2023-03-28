@@ -20,6 +20,8 @@
                             <p>{{ $article->title }}</p>
                             <h6 class="mb-2 mt-2">Article</h6>
                             <p>{!! $article->article !!}</p>
+                            <h6 class="mb-2 mt-2">Tag</h6>
+                            <p>{{ $article->tag->new_tag }}</p>
                         </div>
                         <button type="submit" class="btn btn-primary mt-2">
                             Edit

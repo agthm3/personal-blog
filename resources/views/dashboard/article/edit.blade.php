@@ -35,7 +35,13 @@
                             <h6 class="mb-2 mt-2">Article</h6>
                             <textarea name="article" id="" cols="30" rows="20" class="form-control">{{ $article->article }}</textarea>
                             <h6 class="mb-2 mt-2">Tag</h6>
-                            <input type="text" class="form-control mt-2" id="input-github" name="tag" />
+                            <select name="tag_id" class="form-select" id="floatingSelect"
+                                aria-label="Floating label select example">
+                                <option selected>Open this select menu</option>
+                                @foreach ($tags as $tag)
+                                    <option value="{{ $tag->id }}">{{ $tag->new_tag }}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <button type="submit" class="btn btn-primary mt-2">
                             Simpan

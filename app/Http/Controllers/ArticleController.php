@@ -154,7 +154,8 @@ class ArticleController extends Controller
     }
     public function edit_article(Article $article)
     {
-        return view('dashboard.article.edit', compact('article'));
+        $tags = Tag::all();
+        return view('dashboard.article.edit', compact('article','tags'));
     }
     /**
      * Update the specified resource in storage.
@@ -184,16 +185,31 @@ class ArticleController extends Controller
         $request->validate([
             'title'=>'required',
             'article'=>'required',
-            'image' => 'required'
+            'image' => 'required',
+            'tag_id' => 'nullable',
+            'new_tag' => 'nullable|string|max:255',
         ]);
         $file = $request->file('image');
         $path = time() . '_' . $request->name . '.' . $file->getClientOriginalExtension();
 
+             $tag_id = null;
+            if ($request->filled('tag_id')) {
+                $tag_id = $request->input('tag_id');
+            } elseif ($request->filled('new_tag')) {
+                $tag = Tag::create([
+                    'new_tag' => $request->new_tag
+                ]);
+                $tag_id = $tag->id;
+            }
+            if ($tag_id === null) {
+                return redirect()->back()->withErrors('Please select a tag or create a new one.');
+            }
         Storage::disk('local')->put('public/'. $path, file_get_contents($file));
         $article->update([
             'title' => $request->title,
             'article' => $request->article,
-            'image' => $path
+            'image' => $path,
+            'tag_id' => $tag_id
         ]);
         
 
