@@ -29,7 +29,13 @@ class HomeController extends Controller
     public function index_dashboard()
     {       //Logic untuk mengaktifkan warna di navbar
         session(['active_button' => 'dashboard']);
-        return view('dashboard.index');
+        $comments = Comment::latest()->take(5)->get();
+        $articles = Article::latest()->take(5)->get();
+        $total_comment = Comment::count();
+        $total_portofolio = Portofolio::count();
+        $total_article = Article::count();
+        $total_pendapatan = Portofolio::sum('price');
+        return view('dashboard.index', compact('comments', 'articles', 'total_comment', 'total_portofolio','total_article','total_pendapatan'));
     }
 
     public function index_home()

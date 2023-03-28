@@ -34,6 +34,10 @@ Route::get('/about', [AboutController::class, 'index'])->name('index_about');
 
 //Portofolio Front
 Route::get('/portofolio', [PortofolioController::class, 'index'])->name('index_portofolio');
+
+//Dashboard
+Route::get('/dashboard', [HomeController::class, 'index_dashboard'])->name('index_dashboard');
+
 //portofolio
 Route::get('/dashboard/portofolio', [PortofolioController::class, 'index_dashboard'])->name('index_dashboard_portofolio');
 
@@ -80,7 +84,7 @@ Route::post('/contact/create', [ContactController::class, 'store_dashboard_conta
 Route::get('/contact/edit', [ContactController::class, 'edit_dashboard_contact'])->name('edit_dashboard_contact');
 Route::patch('/contact/edit/{contact}', [ContactController::class, 'update_dashboard_contact'])->name('update_dashboard_contact');
 
-Route::get('/dashboard', [HomeController::class, 'index_dashboard'])->name('index_dashboard');
+
 
 Route::get('/dashboard/home', [HomeController::class, 'index_home'])->name('index_dashboard_home');
 Route::get('/dashboard/home/edit', [HomeController::class, 'edit_home'])->name('edit_dashboard_home');
