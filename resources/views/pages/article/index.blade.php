@@ -19,7 +19,7 @@
                         <div class="cat-links">
                             <ul>
                                 <li>
-                                    <a href="#">GAMES</a>
+                                    <a href="#">{{ $article->tag->new_tag }}</a>
                                 </li>
                             </ul>
                         </div>
