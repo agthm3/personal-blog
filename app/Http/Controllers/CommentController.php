@@ -21,6 +21,9 @@ class CommentController extends Controller
     }
     public function index_dashboard()
     {
+        //Logic untuk mengaktifkan warna di navbar
+          session(['active_button' => 'comment']);
+
         $comments = Comment::all();
         return view('dashboard.comment.index', compact('comments'));
     }
