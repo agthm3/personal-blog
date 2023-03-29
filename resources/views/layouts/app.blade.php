@@ -4,7 +4,7 @@
 <head>
     <title>Andi Gigatera</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta name="description" content="Template by Dry Themes" />
+    <meta name="description" content="Website Portofolio Andi Gigatera Halil M" />
     <meta name="keywords" content="HTML, CSS, JavaScript, PHP" />
     <meta name="author" content="DryThemes" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
