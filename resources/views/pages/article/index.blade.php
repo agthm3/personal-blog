@@ -23,7 +23,7 @@
                                 </li>
                             </ul>
                         </div>
-                        <div class="entry-date published">{{ $article->created_at }}</div>
+                        <div class="entry-date published">{{ $article->created_at->format('d M Y') }}</div>
                         <div class="author vcard">{{ $article->user->name }}</div>
                         <h2 class="entry-title">
                             <a href="{{ route('show_article', $article) }}">{{ $article->title }}</a>
