@@ -36,7 +36,7 @@
                             <h6 class="mb-2 mt-2">Tag</h6>
                             <select name="tag_id" class="form-select" id="floatingSelect"
                                 aria-label="Floating label select example">
-                                <option selected>Open this select menu</option>
+                                <option value="" selected>Open this select menu</option>
                                 @foreach ($tags as $tag)
                                     <option value="{{ $tag->id }}">{{ $tag->new_tag }}</option>
                                 @endforeach
