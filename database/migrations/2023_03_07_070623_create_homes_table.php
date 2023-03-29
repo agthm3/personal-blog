@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('homes', function (Blueprint $table) {
             $table->id();
-            $table->string('welcome_message');
-            $table->string('left_message');
-            $table->string('right_message');
+            $table->longText('welcome_message');
+            $table->longText('left_message');
+            $table->longText('right_message');
             $table->timestamps();
         });
     }
