@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('portofolio_infos', function (Blueprint $table) {
             $table->id();
-            $table->string('welcome_message');
+            $table->longText('welcome_message');
             $table->string('github_link');
             $table->timestamps();
         });
