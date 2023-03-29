@@ -21,7 +21,7 @@
                  <a href="https://www.linkedin.com/in/andigigatera/">Linkedin</a>
                  <a href="https://github.com/agthm3">Github</a>
              </li>
-             <li class="left-footer-content mobile">
+             {{-- <li class="left-footer-content mobile">
                  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                  Copyright &copy;
                  <script>
@@ -31,7 +31,7 @@
                  <i class="fa fa-heart-o" aria-hidden="true"></i> by
                  <a href="https://colorlib.com" target="_blank">Colorlib</a>
                  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-             </li>
+             </li> --}}
          </ul>
      </div>
  </footer>
