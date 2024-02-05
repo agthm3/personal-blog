@@ -1,6 +1,7 @@
 @extends('layouts.dashboard');
 
 @section('content')
+    <script src="https://cdn.ckeditor.com/ckeditor5/41.0.0/classic/ckeditor.js"></script>
     <!-- Form Start -->
     <div class="container-fluid pt-4 px-4">
         @if ($errors->any())
@@ -39,7 +40,10 @@
                             <h6 class="mb-2 mt-2">Title</h6>
                             <input type="text" class="form-control mt-2" id="input-github" name="title" />
                             <h6 class="mb-2 mt-2">Deskripsi</h6>
-                            <textarea name="description" id="" cols="30" rows="20" class="form-control"></textarea>
+                            <div id="editor">
+
+                            </div>
+                            {{-- <textarea name="description" id="" cols="30" rows="20" class="form-control"></textarea> --}}
                             <h6 class="mb-2 mt-2">Harga</h6>
                             <input type="number" class="form-control mt-2" id="input-github" name="price" />
                         </div>
@@ -52,4 +56,11 @@
         </div>
     </div>
     <!-- Form End -->
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#editor'))
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
 @endsection

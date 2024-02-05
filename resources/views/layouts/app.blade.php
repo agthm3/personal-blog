@@ -19,6 +19,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('pages/css/prettyPhoto.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('pages/css/sm-clean.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('pages/style.css') }}" />
+    <script src="https://cdn.ckeditor.com/ckeditor5/41.0.0/classic/ckeditor.js"></script>
 
     <!--[if lt IE 9]>
             <script src="js/html5shiv.js"></script>
@@ -95,6 +96,14 @@
     <script src="{{ asset('pages/js/jquery.ba-throttle-debounce.min.js') }}"></script>
     <script src="{{ asset('pages/js/jquery.nicescroll.min.js') }}"></script>
     <script src="{{ asset('pages/js/main.js') }}"></script>
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#editor'))
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
+
 </body>
 
 </html>
