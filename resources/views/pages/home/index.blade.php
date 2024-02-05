@@ -15,7 +15,7 @@
             <p>&nbsp;</p>
             <p>&nbsp;</p>
             <div class="button-group filters-button-group">
-                <div class="button is-checked" data-target="all">Semua</div>
+                <div class="button is-checked" data-target="all">All</div>
                 <div class="button" data-target="portofolio">Portofolio</div>
                 <div class="button" data-target="article">Artikel</div>
             </div>
