@@ -40,7 +40,7 @@
                             <h6 class="mb-2 mt-2">Title</h6>
                             <input type="text" class="form-control mt-2" id="input-github" name="title" />
                             <h6 class="mb-2 mt-2">Deskripsi</h6>
-                            <textarea name="" id="editor" cols="30" rows="10"></textarea>
+                            <textarea name="" name="description" id="editor" cols="30" rows="10"></textarea>
 
                             {{-- <textarea name="description" id="" cols="30" rows="20" class="form-control"></textarea> --}}
                             <h6 class="mb-2 mt-2">Harga</h6>
