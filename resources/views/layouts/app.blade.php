@@ -96,13 +96,7 @@
     <script src="{{ asset('pages/js/jquery.ba-throttle-debounce.min.js') }}"></script>
     <script src="{{ asset('pages/js/jquery.nicescroll.min.js') }}"></script>
     <script src="{{ asset('pages/js/main.js') }}"></script>
-    <script>
-        ClassicEditor
-            .create(document.querySelector('#editor'))
-            .catch(error => {
-                console.error(error);
-            });
-    </script>
+
 
 </body>
 

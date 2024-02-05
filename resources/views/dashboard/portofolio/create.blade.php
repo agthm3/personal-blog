@@ -1,7 +1,8 @@
 @extends('layouts.dashboard');
 
 @section('content')
-    <script src="https://cdn.ckeditor.com/ckeditor5/41.0.0/classic/ckeditor.js"></script>
+    <script src="https://cdn.ckeditor.com/4.17.1/standard/ckeditor.js"></script>
+
     <!-- Form Start -->
     <div class="container-fluid pt-4 px-4">
         @if ($errors->any())
@@ -40,7 +41,12 @@
                             <h6 class="mb-2 mt-2">Title</h6>
                             <input type="text" class="form-control mt-2" id="input-github" name="title" />
                             <h6 class="mb-2 mt-2">Deskripsi</h6>
-                            <textarea name="" name="description" id="editor" cols="30" rows="10"></textarea>
+                            <div id="editor">
+                                <!-- Replace the input with a textarea -->
+                                <textarea name="description" id="description" cols="30" rows="10"></textarea>
+
+                            </div>
+
 
                             {{-- <textarea name="description" id="" cols="30" rows="20" class="form-control"></textarea> --}}
                             <h6 class="mb-2 mt-2">Harga</h6>
@@ -56,10 +62,7 @@
     </div>
     <!-- Form End -->
     <script>
-        ClassicEditor
-            .create(document.querySelector('#editor'))
-            .catch(error => {
-                console.error(error);
-            });
+        CKEDITOR.replace('description');
     </script>
+
 @endsection
