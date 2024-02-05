@@ -9,7 +9,7 @@
             @else
                 @foreach ($contact as $item)
                     <div class="one_half">
-                        <strong>Tertarik kerja sama?</strong>
+                        <strong>Interested in collaborating?</strong>
                         <br />
                         <p>
 
@@ -20,7 +20,7 @@
                     </div>
 
                     <div class="one_half last">
-                        <b>Hubungi Lewat</b>
+                        <b>Contact me through the information below.</b>
                         <div class="text-left">
                             <a href="{{ $item->github_link }}" target="_self" class="button" style="width: 80%">Github</a>
                             <a href="{{ $item->linkedin_link }}" target="_self" class="button"

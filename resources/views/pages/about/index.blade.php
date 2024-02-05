@@ -25,7 +25,7 @@
             <p>&nbsp;</p>
 
             <div class="one_half">
-                <b>Tentang saya</b>
+                <b>About Me</b>
                 <br />
                 @foreach ($about as $item)
                     <p>{!! $item->article !!}</p>
@@ -34,7 +34,7 @@
 
             <div class="one_half last">
                 <p>&nbsp;</p>
-                <b style="color: red">Pengalaman kerja</b>
+                <b style="color: red">Work Experience</b>
                 <ul class="archive-list">
                     @foreach ($jobexperience as $item)
                         <li>
@@ -46,7 +46,7 @@
             </div>
             <div class="one_half last">
                 <p>&nbsp;</p>
-                <b style="color: red">Prestasi dan Sertifikat</b>
+                <b style="color: red">Achievements and Certifications</b>
                 <ul class="archive-list">
                     @foreach ($achievements as $item)
                         <li>
