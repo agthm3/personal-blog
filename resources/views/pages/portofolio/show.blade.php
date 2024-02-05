@@ -38,7 +38,7 @@
                         <div class="one_half last">
                             <strong>{{ $portofolio->title }}</strong>
                             <br />
-                            <p>{{ $portofolio->description }}</p>
+                            <p>{!! $portofolio->description !!}</p>
                         </div>
                         <div class="clear"></div>
                     </div>
