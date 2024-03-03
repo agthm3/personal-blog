@@ -7,11 +7,11 @@
         </h1>
         <div class="post-full-width">
             <!-- <iframe
-                                                                                                                                                                                                                                                                                                    src="https://player.vimeo.com/video/150685211"
-                                                                                                                                                                                                                                                                                                    width="640"
-                                                                                                                                                                                                                                                                                                    height="360"
-                                                                                                                                                                                                                                                                                                    allowfullscreen="allowfullscreen"
-                                                                                                                                                                                                                                                                                                ></iframe> -->
+                                                                                                                                                                                                                                                                                                        src="https://player.vimeo.com/video/150685211"
+                                                                                                                                                                                                                                                                                                        width="640"
+                                                                                                                                                                                                                                                                                                        height="360"
+                                                                                                                                                                                                                                                                                                        allowfullscreen="allowfullscreen"
+                                                                                                                                                                                                                                                                                                    ></iframe> -->
             <center>
                 <img style="width: 60%" class="mb-2" src="{{ url('storage/' . $article->image) }}" alt="">
             </center>
@@ -35,7 +35,7 @@
             <div class="entry-content">
                 <div class="content-wrap">
                     <p>
-                        {!! $article->article !!}
+                    <p>{!! $article->article !!}</p>
                     </p>
 
                 </div>
